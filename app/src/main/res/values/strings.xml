@@ -4,6 +4,30 @@
     <string name="search_bar">Search for an item</string>
     <string name="category_page_name">Category</string>
     <string name="product_page_name">Product</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="addproduct_title">Add Product</string>
+    <string name="insert_img_desc">Insert Image</string>
+    <string name="product_name_textview">Product Name</string>
+    <string name="enter_product_name_ph">Enter Product Name</string>
+    <string name="product_desc_textview">Product Description</string>
+    <string name="enter_price_ph">Enter Price</string>
+    <string name="product_price_textview">Product Price</string>
+    <string name="product_stock_textview">Product Stock</string>
+    <string name="product_category_textview">Product Category</string>
+    <string name="enter_product_desc_ph">Enter Product Description</string>
+    <string name="enter_stock_ph">Enter Stock</string>
+    <string name="ship_option_cb_text">I require external shipment services to ship my items.</string>
+    <string name="add_product_button_text">Add Product</string>
+    <string-array name="category_group">
+        <item>Fashion</item>
+        <item>Sports</item>
+        <item>Daily</item>
+        <item>Electronics</item>
+        <item>Entertainment</item>
+        <item>Food</item>
+        <item>Books</item>
+        <item>Decorative</item>
+    </string-array>
 </resources>
