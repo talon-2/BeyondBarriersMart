@@ -1,13 +1,17 @@
 package my.edu.tarc.beyondbarriersmart
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_product)
+        setContentView(R.layout.fragment_add_products)
+
+        //starting spending chart activity (to be placed in an if else statement.)
+        //startActivity(Intent(this,SpendingChartActivity::class.java))
+
     }
 }
