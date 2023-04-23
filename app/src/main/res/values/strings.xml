@@ -20,6 +20,8 @@
     <string name="enter_stock_ph">Enter Stock</string>
     <string name="ship_option_cb_text">I require external shipment services to ship my items.</string>
     <string name="add_product_button_text">Add Product</string>
+    <string name="cartTitle">Cart Page</string>
+    <string name="cartItemNumber">Items in Cart: </string>
     <string-array name="category_group">
         <item>Fashion</item>
         <item>Sports</item>
