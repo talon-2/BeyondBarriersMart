@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CategoryFragment">
 
     <TextView
-        android:id="@+id/homePageTitleText"
-        android:layout_width="match_parent"
+        android:id="@+id/CatePageTitleText"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:background="@color/main_theme_color"
         android:fontFamily="sans-serif-black"
         android:paddingTop="10dp"
-        android:text="@string/homepage_title"
+        android:text="@string/category_title"
         android:textAlignment="center"
         android:textColor="#C5CFF3"
         android:textColorHighlight="#FFFFFF"
@@ -22,4 +23,229 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</FrameLayout>
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/search_bar_bg_round"
+        android:queryHint="@string/search_bar_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CatePageTitleText" >
+
+    </SearchView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/buttonGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="115dp" />
+
+    <Button
+        android:id="@+id/fashionBtn"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_bg_round"
+        android:paddingStart="5dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="1dp"
+        android:text="@string/fashion_btn"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonGuideline"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/sportsBtn"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_bg_round"
+        android:paddingStart="5dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="1dp"
+        android:text="@string/sports_btn"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/fashionBtn"
+        app:layout_constraintTop_toTopOf="@+id/buttonGuideline"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/foodBtn"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_bg_round"
+        android:paddingStart="5dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="1dp"
+        android:text="@string/food_btn"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/entertainmentBtn"
+        app:layout_constraintTop_toBottomOf="@+id/sportsBtn"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/dailyBtn"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_bg_round"
+        android:paddingStart="5dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="1dp"
+        android:text="@string/daily_btn"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/sportsBtn"
+        app:layout_constraintTop_toTopOf="@+id/buttonGuideline"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/booksBtn"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_bg_round"
+        android:paddingStart="5dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="1dp"
+        android:text="@string/books_btn"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/foodBtn"
+        app:layout_constraintTop_toBottomOf="@+id/dailyBtn"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/entertainmentBtn"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_bg_round"
+        android:paddingStart="5dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="1dp"
+        android:text="@string/entertainment_btn"
+        android:textSize="8sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fashionBtn"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/electronicsBtn"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/button_bg_round"
+        android:paddingStart="5dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="1dp"
+        android:text="@string/electronics_btn"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dailyBtn"
+        app:layout_constraintTop_toTopOf="@+id/buttonGuideline"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/decorativeBtn"
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/button_bg_round"
+        android:paddingStart="5dp"
+        android:paddingTop="1dp"
+        android:paddingEnd="5dp"
+        android:paddingBottom="1dp"
+        android:text="@string/decorative_btn"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dailyBtn"
+        app:layout_constraintTop_toBottomOf="@+id/electronicsBtn"
+        tools:ignore="SmallSp,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/categoriesTextTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/categories_legend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonGuideline" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/productGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="230dp" />
+
+    <Spinner
+        android:id="@+id/cateFilterSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:entries="@array/product_filter_group"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/productGuideline" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TableLayout
+        android:layout_width="409dp"
+        android:layout_height="402dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cateFilterSpinner">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

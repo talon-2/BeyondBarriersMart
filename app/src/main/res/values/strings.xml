@@ -1,9 +1,26 @@
 <resources>
     <string name="app_name">BeyondBarriersMart</string>
-    <string name="homepage_title">Home Page</string>
-    <string name="search_bar">Search for an item</string>
     <string name="category_page_name">Category</string>
     <string name="product_page_name">Product</string>
+
+    <!--Category page strings-->
+    <string name="category_title">Category Page</string>
+    <string name="categories_legend">Categories</string>
+    <string name="search_bar_hint">Search for an item</string>
+    <string name="fashion_btn">Fashion</string>
+    <string name="sports_btn">Sports</string>
+    <string name="daily_btn">Daily</string>
+    <string name="electronics_btn">Electronics</string>
+    <string name="entertainment_btn">Entertainment</string>
+    <string name="food_btn">Food</string>
+    <string name="books_btn">Books</string>
+    <string name="decorative_btn">Decorative</string>
+    <string-array name="product_filter_group">
+        <item>Latest release</item>
+        <item>Most sold</item>
+        <item>Price(lowest to high)</item>
+        <item>Price(highest to low)</item>
+    </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
