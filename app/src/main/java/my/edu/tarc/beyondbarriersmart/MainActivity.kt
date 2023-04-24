@@ -10,8 +10,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_add_products)
 
-        //starting spending chart activity (to be placed in an if else statement.)
-        startActivity(Intent(this,MyProductsActivity::class.java))
+        //starting a activity (to be placed in an if else statement.)
+        //startActivity(Intent(this,MyProductsActivity::class.java))
 
     }
 }
