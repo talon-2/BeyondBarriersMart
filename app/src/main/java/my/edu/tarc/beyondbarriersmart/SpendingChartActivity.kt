@@ -1,6 +1,7 @@
 package my.edu.tarc.beyondbarriersmart
 
 import android.graphics.Color
+import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.github.mikephil.charting.charts.BarChart
@@ -14,33 +15,35 @@ class SpendingChartActivity : AppCompatActivity() {
     lateinit var barDataSet : BarDataSet
     lateinit var barData: BarData
     lateinit var barChart: BarChart
+    lateinit var calendar: Calendar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_spending_chart)
+        calendar = Calendar.getInstance()
         barChart = findViewById(R.id.barchart)
 
         getChartData()
 
-        barDataSet = BarDataSet(barList, "Bar Chart Data")
+        barDataSet = BarDataSet(barList, "Spendings")
         barData = BarData(barDataSet)
         barChart.data = barData
         barDataSet.valueTextColor = Color.BLACK
-        //barDataSet.color = Color.BLUE
-        barDataSet.setColor(resources.getColor(R.color.purple_200))
+        barDataSet.color = Color.BLUE
+        barChart.animateY(1000)
 
         barDataSet.valueTextSize = 16f
+        barChart.setDrawGridBackground(false)
         barChart.description.isEnabled = false
         //barChart.visibility = View.VISIBLE
     }
 
     private fun getChartData(){
         barList = ArrayList()
-        barList.add(BarEntry(1f, 1f))
-        barList.add(BarEntry(2f, 2f))
-        barList.add(BarEntry(3f, 3f))
-        barList.add(BarEntry(4f, 4f))
-
-
+        barList.add(BarEntry(1f, 10.00f))
+        barList.add(BarEntry(2f, 200.00f))
+        barList.add(BarEntry(3f, 33.33f))
+        barList.add(BarEntry(4f, 0f))
     }
+
 }

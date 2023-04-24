@@ -2,12 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sellerProductsTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyProductsFragment" >
+    tools:context=".MyProductsActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sellerProductsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@+id/sellerProductsTitle2"
+        tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/sellerProductsTitle"
+        android:id="@+id/sellerProductsTitle2"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/main_theme_color"
@@ -22,11 +31,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@+id/sellerProductsTitle"
-        tools:layout_editor_absoluteX="-16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

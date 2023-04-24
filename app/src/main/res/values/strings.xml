@@ -49,6 +49,20 @@
         <item>Books</item>
         <item>Decorative</item>
     </string-array>
+    <string-array name="month_group">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
     <string name="title_activity_spending_chart">SpendingChartActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -58,4 +72,20 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="highest_spending_textview">Your Highest Spending This Month</string>
+    <string name="highest_spending_amt_textview">none (dummy)</string>
+    <string name="total_spending_textview">Your Total Spending This Month</string>
+    <string name="total_spending_amt_textview">none(dummy)</string>
+    <string name="set_spending_limit_textview">Set Spending Limit</string>
+    <string name="set_spending_limit_text">1000.00</string>
+    <string name="spending_limit_reach_cb_text">Stop payments if spending limit is reached.</string>
+    <string name="warn_spending_limit_cb_text">Warn me if I am close to spending limit.</string>
+    <string name="spending_chart_title">Spending Chart</string>
+    <string name="seller_products_title">Seller Products</string>
+    <string name="seller_product_name_textview">Product Name 1</string>
+    <string name="seller_product_stock_textview">Stock : N/A</string>
+    <string name="seller_product_sold_textview">Sold : N/A</string>
+    <string name="seller_product_rating_textview">Average Rating : N/A</string>
+    <string name="seller_product_cost_textview">Cost : N/A</string>
+    <string name="delist_button_text">De-list</string>
 </resources>

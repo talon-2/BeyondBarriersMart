@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.fragment_add_products)
 
         //starting spending chart activity (to be placed in an if else statement.)
-        //startActivity(Intent(this,SpendingChartActivity::class.java))
+        startActivity(Intent(this,MyProductsActivity::class.java))
 
     }
 }
