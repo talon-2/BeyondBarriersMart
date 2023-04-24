@@ -37,8 +37,6 @@
     <string name="enter_stock_ph">Enter Stock</string>
     <string name="ship_option_cb_text">I require external shipment services to ship my items.</string>
     <string name="add_product_button_text">Add Product</string>
-    <string name="cartTitle">Cart Page</string>
-    <string name="cartItemNumber">Items in Cart: </string>
     <string-array name="category_group">
         <item>Fashion</item>
         <item>Sports</item>
@@ -73,6 +71,9 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
+    <!-- Cart -->
+    <string name="cartTitle">Cart Page</string>
+    <string name="cartItemNumber">Items in Cart: N/A</string>
     <string name="clearCartText">Clear Cart</string>
 
     <string name="highest_spending_textview">Your Highest Spending This Month</string>

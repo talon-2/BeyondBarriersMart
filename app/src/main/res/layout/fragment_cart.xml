@@ -38,9 +38,21 @@
         android:id="@+id/clearCartButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+
         android:layout_marginEnd="16dp"
+        android:backgroundTint="#DA2316"
         android:text="@string/clearCartText"
         app:layout_constraintBottom_toBottomOf="@+id/cartItemNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cartItemNumber" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cartItemNumber" />
 </androidx.constraintlayout.widget.ConstraintLayout>
