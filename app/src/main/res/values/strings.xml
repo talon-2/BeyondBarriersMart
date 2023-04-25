@@ -71,10 +71,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <!-- Cart -->
-    <string name="cartTitle">Cart Page</string>
-    <string name="cartItemNumber">Items in Cart: N/A</string>
-    <string name="clearCartText">Clear Cart</string>
 
     <string name="highest_spending_textview">Your Highest Spending This Month</string>
     <string name="highest_spending_amt_textview">none (dummy)</string>
@@ -92,5 +88,28 @@
     <string name="seller_product_rating_textview">Average Rating : N/A</string>
     <string name="seller_product_cost_textview">Cost : N/A</string>
     <string name="delist_button_text">De-list</string>
+
+
+    <!-- Cart -->
+    <string name="cartTitle">Cart</string>
+    <string name="cartItemNumber">Items in Cart: N/A</string>
+    <string name="clearCartText">Clear Cart</string>
+    <string name="cartTotalPrice">Total: RMX.XX</string>
+    <string name="cartCheckoutButton">Proceed to Checkout</string>
+
+    <!-- Checkout -->
+    <string name="checkoutTitle">Checkout</string>
+    <string name="savedPaymentMethodText">Saved Payment Methods</string>
+    <string name="paymentMethod1">Visa 4875 XXXX XXXX XXXX</string>
+    <string name="addPaymentMethodText"><![CDATA[Add Payment Method >]]></string>
+    <string name="savedAddressText">Saved Address</string>
+    <string name="address1">St. Street, 5, State Garden, LA</string>
+    <string name="addAddressText"><![CDATA[Add Address >]]></string>
+    <string name="orderSummaryText">Order Summary</string>
+    <string name="checkoutBackButton">Back</string>
+    <string name="checkoutProceedButton">Proceed</string>
+    <string name="orderSummaryName">Name</string>
+    <string name="orderSummaryCost">Cost</string>
+
 
 </resources>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ContraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckoutFragment">
+
+    <TextView
+        android:id="@+id/checkoutTitle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/main_theme_color"
+        android:fontFamily="sans-serif-black"
+        android:paddingTop="10dp"
+        android:text="@string/checkoutTitle"
+        android:textAlignment="center"
+        android:textColor="#C5CFF3"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/savedPaymentMethodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/savedPaymentMethodText"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/checkoutTitle"
+        app:layout_constraintStart_toStartOf="@+id/checkoutTitle"
+        app:layout_constraintTop_toBottomOf="@+id/checkoutTitle" />
+
+    <TextView
+        android:id="@+id/paymentMethodBackground"
+        android:layout_width="0dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="#DADADA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savedPaymentMethodText" />
+
+    <ImageView
+        android:id="@+id/paymentMethodImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@tools:sample/avatars"
+        app:layout_constraintBottom_toBottomOf="@+id/paymentMethodBackground"
+        app:layout_constraintEnd_toEndOf="@+id/paymentMethodBackground"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="@+id/paymentMethodBackground"
+        app:layout_constraintTop_toTopOf="@+id/paymentMethodBackground"
+        app:srcCompat="@drawable/baseline_credit_card_24" />
+
+    <TextView
+        android:id="@+id/paymentMethodDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/paymentMethod1"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/paymentMethodBackground"
+        app:layout_constraintEnd_toEndOf="@+id/paymentMethodBackground"
+        app:layout_constraintStart_toEndOf="@+id/paymentMethodImage"
+        app:layout_constraintTop_toTopOf="@+id/paymentMethodBackground" />
+
+    <TextView
+        android:id="@+id/addPaymentMethodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/addPaymentMethodText"
+        app:layout_constraintEnd_toEndOf="@+id/paymentMethodBackground"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/paymentMethodBackground"
+        app:layout_constraintTop_toBottomOf="@+id/paymentMethodBackground" />
+
+    <TextView
+        android:id="@+id/savedAddressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/savedAddressText"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/checkoutTitle"
+        app:layout_constraintStart_toStartOf="@+id/checkoutTitle"
+        app:layout_constraintTop_toBottomOf="@+id/addPaymentMethodText" />
+
+    <TextView
+        android:id="@+id/addressBackground"
+        android:layout_width="0dp"
+        android:layout_height="85dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="#DADADA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/savedAddressText" />
+
+    <ImageView
+        android:id="@+id/addressImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@tools:sample/avatars"
+        app:layout_constraintBottom_toBottomOf="@+id/addressBackground"
+        app:layout_constraintEnd_toEndOf="@+id/addressBackground"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="@+id/addressBackground"
+        app:layout_constraintTop_toTopOf="@+id/addressBackground"
+        app:srcCompat="@drawable/baseline_home_24" />
+
+    <TextView
+        android:id="@+id/addressDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/address1"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/addressBackground"
+        app:layout_constraintEnd_toEndOf="@+id/addressBackground"
+        app:layout_constraintStart_toEndOf="@+id/addressImage"
+        app:layout_constraintTop_toTopOf="@+id/addressBackground" />
+
+    <TextView
+        android:id="@+id/addAddressText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/addAddressText"
+        app:layout_constraintEnd_toEndOf="@+id/addressBackground"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/addressBackground"
+        app:layout_constraintTop_toBottomOf="@+id/addressBackground" />
+
+    <TextView
+        android:id="@+id/orderSummaryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/orderSummaryText"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/checkoutTitle"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="@+id/checkoutTitle"
+        app:layout_constraintTop_toBottomOf="@+id/addAddressText" />
+
+    <TextView
+        android:id="@+id/orderSummaryBackground"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="#DADADA"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/orderSummaryText" />
+
+    <TextView
+        android:id="@+id/orderSummaryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/orderSummaryName"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/orderSummaryBackground"
+        app:layout_constraintEnd_toEndOf="@+id/orderSummaryBackground"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="@+id/orderSummaryBackground"
+        app:layout_constraintTop_toTopOf="@+id/orderSummaryBackground"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <TextView
+        android:id="@+id/orderSummaryCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/orderSummaryCost"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/orderSummaryBackground"
+        app:layout_constraintEnd_toEndOf="@+id/orderSummaryBackground"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="@+id/orderSummaryBackground"
+        app:layout_constraintTop_toTopOf="@+id/orderSummaryBackground"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/checkoutOrderList"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/orderSummaryBackground"
+        app:layout_constraintEnd_toEndOf="@+id/orderSummaryBackground"
+        app:layout_constraintStart_toStartOf="@+id/orderSummaryBackground"
+        app:layout_constraintTop_toBottomOf="@+id/orderSummaryName" />
+
+    <Button
+        android:id="@+id/checkoutBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/checkoutBackButton"
+        app:layout_constraintEnd_toStartOf="@+id/checkoutProceedButton"
+        app:layout_constraintStart_toStartOf="@+id/orderSummaryBackground"
+        app:layout_constraintTop_toBottomOf="@+id/orderSummaryBackground" />
+
+    <Button
+        android:id="@+id/checkoutProceedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="#008512"
+        android:text="@string/checkoutProceedButton"
+        app:layout_constraintEnd_toEndOf="@+id/orderSummaryBackground"
+        app:layout_constraintStart_toEndOf="@+id/checkoutBackButton"
+        app:layout_constraintTop_toBottomOf="@+id/orderSummaryBackground" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
