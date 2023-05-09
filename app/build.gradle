@@ -4,6 +4,12 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
+task wrapper(type: Wrapper){
+    gradleVersion = '8.0'
+}
+task prepareKotlinBuildScriptModel{
+
+}
 android {
     namespace 'my.edu.tarc.beyondbarriersmart'
     compileSdk 33
@@ -54,6 +60,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
+    implementation 'com.google.android.material:material:1.2.0'
     implementation platform('com.google.firebase:firebase-bom:32.0.0')
     implementation 'com.google.firebase:firebase-analytics-ktx:21.2.2'
 }
