@@ -51,13 +51,13 @@
         android:id="@+id/paymentMethodImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@tools:sample/avatars"
         app:layout_constraintBottom_toBottomOf="@+id/paymentMethodBackground"
         app:layout_constraintEnd_toEndOf="@+id/paymentMethodBackground"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="@+id/paymentMethodBackground"
         app:layout_constraintTop_toTopOf="@+id/paymentMethodBackground"
         app:srcCompat="@drawable/baseline_credit_card_24" />
+    <!--android:src="@tools:sample/avatars"-->
 
     <TextView
         android:id="@+id/paymentMethodDetail"
@@ -109,13 +109,13 @@
         android:id="@+id/addressImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@tools:sample/avatars"
         app:layout_constraintBottom_toBottomOf="@+id/addressBackground"
         app:layout_constraintEnd_toEndOf="@+id/addressBackground"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="@+id/addressBackground"
         app:layout_constraintTop_toTopOf="@+id/addressBackground"
         app:srcCompat="@drawable/baseline_home_24" />
+    <!--android:src="@tools:sample/avatars"-->
 
     <TextView
         android:id="@+id/addressDetail"

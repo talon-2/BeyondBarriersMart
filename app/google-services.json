@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "202286959199",
+    "project_id": "beyondbarriersmart",
+    "storage_bucket": "beyondbarriersmart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:202286959199:android:3338feb137a301b91669ea",
+        "android_client_info": {
+          "package_name": "my.edu.tarc.beyondbarriersmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "202286959199-5l227sbrpm8pl0ud61ksngol15ffb075.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDePEaxdLllhsKJbsUx63iXBTrjLLvIsic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "202286959199-5l227sbrpm8pl0ud61ksngol15ffb075.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
