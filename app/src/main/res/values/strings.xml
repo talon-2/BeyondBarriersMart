@@ -22,6 +22,13 @@
         <item>Price(highest to low)</item>
     </string-array>
 
+    <!--Category page strings-->
+    <string name="product_page_title">Product Page</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="popular_review">Popular Review</string>
+    <string name="related_products">Related Products</string>
+    <string name="seller">Seller:</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="addproduct_title">Add Product</string>
