@@ -29,21 +29,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="334dp" />
+        app:layout_constraintGuide_begin="312dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="210dp" />
+        app:layout_constraintGuide_begin="190dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="528dp" />
+        app:layout_constraintGuide_begin="503dp" />
 
     <Button
         android:id="@+id/addToCartBtn"
@@ -71,7 +71,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
-        android:id="@+id/relatedProductsTextView2"
+        android:id="@+id/TopReviewTitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -90,6 +90,7 @@
         android:layout_width="111dp"
         android:layout_height="113dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/baseline_broken_image_24"
         app:layout_constraintBottom_toTopOf="@+id/guideline3"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,22 +101,55 @@
         android:layout_width="67dp"
         android:layout_height="64dp"
         android:layout_marginStart="52dp"
+        android:layout_marginTop="5dp"
         android:src="@drawable/baseline_broken_image_24"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemDescTextView"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.175" />
 
     <ImageView
         android:id="@+id/topReviewImageView"
         android:layout_width="67dp"
         android:layout_height="64dp"
         android:layout_marginStart="28dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="70dp"
         android:src="@drawable/baseline_broken_image_24"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relatedProductsTextView2" />
+        app:layout_constraintTop_toBottomOf="@+id/TopReviewTitleTextView"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <ImageView
+        android:id="@+id/relatedProduct1ImageView"
+        android:layout_width="67dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/baseline_broken_image_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <ImageView
+        android:id="@+id/relatedProduct2ImageView"
+        android:layout_width="67dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/baseline_broken_image_24"
+        app:layout_constraintEnd_toStartOf="@+id/relatedProduct3ImageView"
+        app:layout_constraintStart_toEndOf="@+id/relatedProduct1ImageView"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+    <ImageView
+        android:id="@+id/relatedProduct3ImageView"
+        android:layout_width="67dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/baseline_broken_image_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
     <TextView
         android:id="@+id/itemNameTextView"
@@ -123,7 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
         android:layout_marginTop="28dp"
-        android:text="TextView"
+        android:text="@string/item_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/itemImageView"
@@ -135,7 +169,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
-        android:text="TextView"
+        android:text="@string/item_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/itemImageView"
@@ -148,7 +182,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:text="@string/number_rating"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/itemImageView"
@@ -159,20 +193,21 @@
         android:id="@+id/sellerLabelTextView"
         android:layout_width="39dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
+        android:layout_marginTop="12dp"
+        android:text="@string/seller"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.086"
         app:layout_constraintStart_toEndOf="@+id/sellerImageView"
         app:layout_constraintTop_toBottomOf="@+id/itemDescTextView"
+        tools:ignore="TextSizeCheck"
         tools:text="@string/seller" />
 
     <TextView
-        android:id="@+id/reviewerNameTextView2"
+        android:id="@+id/reviewerNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="TextView"
+        android:text="@string/reviewer_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
         app:layout_constraintStart_toEndOf="@+id/topReviewImageView"
@@ -180,37 +215,102 @@
         tools:text="@string/reviewer_name" />
 
     <TextView
-        android:id="@+id/reviewDescTextView3"
+        android:id="@+id/reviewDescTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/addToCartBtn"
+        android:layout_marginTop="30dp"
+        android:text="@string/review_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/topReviewImageView"
-        app:layout_constraintTop_toBottomOf="@+id/reviewerNameTextView2"
-        app:layout_constraintVertical_bias="0.64"
+        app:layout_constraintTop_toBottomOf="@+id/reviewerNameTextView"
         tools:text="@string/review_desc" />
+
+    <TextView
+        android:id="@+id/relatedProduct1TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="265dp"
+        android:text="@string/related_products_name_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relatedProduct1ImageView"
+        tools:text="@string/related_products_name_1" />
+
+    <TextView
+        android:id="@+id/relatedProductPrice1TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="265dp"
+        android:text="@string/related_products_price_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relatedProduct1TextView"
+        tools:text="@string/related_products_price_1" />
+
+    <TextView
+        android:id="@+id/relatedProductPrice2TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/related_products_price_2"
+        app:layout_constraintEnd_toStartOf="@+id/relatedProductPrice3TextView"
+        app:layout_constraintStart_toEndOf="@+id/relatedProductPrice1TextView"
+        app:layout_constraintTop_toBottomOf="@+id/relatedProduct2TextView"
+        tools:text="@string/related_products_price_2" />
+
+    <TextView
+        android:id="@+id/relatedProductPrice3TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="265dp"
+        android:text="@string/related_products_price_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relatedProduct3TextView"
+        tools:text="@string/related_products_price_3" />
+
+    <TextView
+        android:id="@+id/relatedProduct2TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/related_products_name_2"
+        app:layout_constraintEnd_toStartOf="@+id/relatedProduct3TextView"
+        app:layout_constraintStart_toEndOf="@+id/relatedProduct1TextView"
+        app:layout_constraintTop_toBottomOf="@+id/relatedProduct2ImageView"
+        tools:text="@string/related_products_name_2" />
+
+    <TextView
+        android:id="@+id/relatedProduct3TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="265dp"
+        android:text="@string/related_products_name_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relatedProduct3ImageView"
+        tools:text="@string/related_products_name_3" />
 
     <TextView
         android:id="@+id/sellerNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="TextView"
+        android:text="@string/seller_name"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintHorizontal_bias="0.097"
         app:layout_constraintStart_toEndOf="@+id/sellerImageView"
         app:layout_constraintTop_toBottomOf="@+id/sellerLabelTextView"
+        app:layout_constraintVertical_bias="1.0"
         tools:text="@string/seller_name" />
 
     <TextView
         android:id="@+id/itemDescTextView"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:text="TextView"
+        android:text="@string/item_desc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
@@ -224,9 +324,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="5dp"
         android:numStars="5"
-        app:layout_constraintBottom_toTopOf="@+id/reviewDescTextView3"
+        app:layout_constraintBottom_toTopOf="@+id/reviewDescTextView"
         app:layout_constraintStart_toEndOf="@+id/topReviewImageView"
-        app:layout_constraintTop_toBottomOf="@+id/reviewerNameTextView2"
+        app:layout_constraintTop_toBottomOf="@+id/reviewerNameTextView"
         app:layout_constraintVertical_bias="0.0" />
 
     <RatingBar
