@@ -20,7 +20,7 @@ class MyProductsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_my_products, container, false)
+        val view = inflater.inflate(R.layout.activity_my_products, container, false)
         return view
     }
 
