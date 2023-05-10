@@ -16,4 +16,11 @@
         android:id="@+id/logoutIcon"
         android:title="Logout"
         android:icon="@drawable/baseline_logout_24"/>
+
+    <!--Invisible item in case none of the icons are selected.-->
+    <item
+        android:id="@+id/invisibleIcon"
+        android:visible="false"
+        android:title="Logout"
+        android:icon="@drawable/baseline_logout_24"/>
 </menu>

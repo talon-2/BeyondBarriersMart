@@ -11,10 +11,10 @@ class SellerProductCardViewHolder (
     {
         sellerProductCardItemBinding.sellerProductImageView.setImageResource(sellerProductItem.image)
         sellerProductCardItemBinding.sellerProductNameTextview.text = sellerProductItem.name
-        sellerProductCardItemBinding.sellerProductStockTextview.text = sellerProductItem.stock
-        sellerProductCardItemBinding.sellerProductSoldTextview.text = sellerProductItem.sold
-        sellerProductCardItemBinding.sellerProductRatingTextview.text = sellerProductItem.rating
-        sellerProductCardItemBinding.sellerProductCostTextview.text = sellerProductItem.cost
+        sellerProductCardItemBinding.sellerProductStockTextview.text = "Stock: " + sellerProductItem.stock
+        sellerProductCardItemBinding.sellerProductSoldTextview.text = "Sold: " + sellerProductItem.sold
+        sellerProductCardItemBinding.sellerProductRatingTextview.text = "Rating: " + sellerProductItem.rating
+        sellerProductCardItemBinding.sellerProductCostTextview.text = "Cost: RM" + String.format(sellerProductItem.cost.toString(),"%.2f")
     }
 
 }

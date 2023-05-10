@@ -23,6 +23,11 @@ class MyProductsActivity : AppCompatActivity() {
             layoutManager = GridLayoutManager(applicationContext, 1)
             adapter = SellerProductCardAdapter(productList)
         }
+
+        val bottomNavigationFragment = BottomNavFragment()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.my_products_fragment_container, bottomNavigationFragment)
+            .commit()
         
     }
 
@@ -31,21 +36,31 @@ class MyProductsActivity : AppCompatActivity() {
         val item1 = SellerProductItem(
             R.drawable.baseline_person_24,
             "Prod1",
-            "Stock : 10",
-            "Sold : 10",
-            "Average Rating : 5",
-            "Cost: RM 10.00",
+            10,
+            10,
+            5f,
+            10f,
         )
         productList.add(item1)
 
         val item2 = SellerProductItem(
             R.drawable.baseline_person_24,
             "Prod1",
-            "Stock : 10",
-            "Sold : 10",
-            "Average Rating : 5",
-            "Cost: RM 10.00",
+            10,
+            10,
+            5f,
+            10f,
         )
         productList.add(item2)
+
+        val item3 = SellerProductItem(
+            R.drawable.baseline_person_24,
+            "Prod1",
+            10,
+            10,
+            5f,
+            10f,
+        )
+        productList.add(item3)
     }
 }
