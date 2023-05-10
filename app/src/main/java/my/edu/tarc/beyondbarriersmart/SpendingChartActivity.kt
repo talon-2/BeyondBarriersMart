@@ -1,13 +1,17 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.content.Intent
 import android.graphics.Color
 import android.icu.util.Calendar
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.forEach
+import androidx.fragment.app.Fragment
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SpendingChartActivity : AppCompatActivity() {
 
@@ -36,6 +40,11 @@ class SpendingChartActivity : AppCompatActivity() {
         barChart.setDrawGridBackground(false)
         barChart.description.isEnabled = false
         //barChart.visibility = View.VISIBLE
+
+        val bottomNavigationFragment = BottomNavFragment()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.spending_chart_fragment_container, bottomNavigationFragment)
+            .commit()
     }
 
     private fun getChartData(){

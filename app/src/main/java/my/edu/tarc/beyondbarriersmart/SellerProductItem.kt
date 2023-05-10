@@ -5,8 +5,8 @@ var productList = mutableListOf<SellerProductItem>()
 class SellerProductItem (
     var image : Int,
     var name: String,
-    var stock: String,
-    var sold: String,
-    var rating: String,
-    var cost: String,
+    var stock: Int,
+    var sold: Int,
+    var rating: Float,
+    var cost: Float,
 )
