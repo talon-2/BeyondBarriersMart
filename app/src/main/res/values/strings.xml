@@ -15,6 +15,8 @@
     <string name="food_btn">Food</string>
     <string name="books_btn">Books</string>
     <string name="decorative_btn">Decorative</string>
+    <string name="category_item_name">Item Name</string>
+    <string name="category_item_price">RM 0.00</string>
     <string-array name="product_filter_group">
         <item>Latest release</item>
         <item>Most sold</item>
@@ -22,12 +24,26 @@
         <item>Price(highest to low)</item>
     </string-array>
 
-    <!--Category page strings-->
+    <!--Product page strings-->
     <string name="product_page_title">Product Page</string>
     <string name="add_to_cart">Add To Cart</string>
     <string name="popular_review">Popular Review</string>
     <string name="related_products">Related Products</string>
     <string name="seller">Seller:</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_price">RM 0.00</string>
+    <string name="number_rating">0.0 Rating over 0 users</string>
+    <string name="item_desc">This is the item description</string>
+    <string name="seller_name">Seller Name</string>
+    <string name="reviewer_name">Reviewer Name</string>
+    <string name="review_desc">This is the review description</string>
+    <string name="related_products_name_1">related product 1</string>
+    <string name="related_products_price_1">RM 0.00</string>
+    <string name="related_products_name_2">related product 2</string>
+    <string name="related_products_price_2">RM 0.00</string>
+    <string name="related_products_name_3">related product 3</string>
+    <string name="related_products_price_3">RM 0.00</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
