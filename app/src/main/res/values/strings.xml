@@ -173,15 +173,25 @@
     <string name="upload_file">Upload File</string>
 
     <!-- strings related to profile -->
+    <string name="profile">Profile</string>
     <string name="username_sample">User5432</string>
     <string name="last_purchase">Last Purchase:</string>
     <string name="last_purchase_time_sample">69 minute(s) ago</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="saved_payment_methods">Saved Payment Methods</string>
-    <string name="add_payment_method">Add Payment Method ></string>
+    <string name="edit_payment_method">Edit Payment Method ></string>
+    <string name="credit_card_type_sample">Visa</string>
+    <string name="credit_card_number_sample">4567 XXXX XXXX XXXX</string>
     <string name="saved_addresses">Saved Addresses</string>
-    <string name="add_address">Add Address ></string>
+    <string name="address_sample">St.Street 5, State Street, 4000, Cities</string>
+    <string name="edit_address">Edit Address ></string>
     <string name="history">History</string>
+    <string name="history_sample1">1) 22/3/2021</string>
+    <string name="history_sample2">2) 22/4/2021</string>
+    <string name="history_sample3">3) 25/6/2021</string>
+    <string name="history_amount_sample1">RM4.30</string>
+    <string name="history_amount_sample2">RM10.20</string>
+    <string name="history_amount_sample3">RM420.69</string>
     <string name="view_further_tap_bar">To view further item details, tap on the bar.</string>
     <string name="view_spending_chart">View Spending Chart</string>
     <string name="view_ongoing_deliveries">View Ongoing Deliveries</string>
