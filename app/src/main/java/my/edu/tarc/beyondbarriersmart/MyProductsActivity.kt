@@ -20,7 +20,7 @@ import org.intellij.lang.annotations.JdkConstants.BoxLayoutAxis
 class MyProductsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyProductsBinding
     private val db = Firebase.firestore
-    private val noteRef = db.collection("sellerProduct")
+    private val noteRef = db.collection("SellerProductItem")
     private val myObjects = mutableListOf<SellerProductItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
