@@ -88,7 +88,7 @@ class SellerProductCardViewHolder (
             }
 
         //Delete record (from firestore)
-        db.collection("sellerProduct").document(productId)
+        db.collection("SellerProductItem").document(productId)
             .delete()
             .addOnSuccessListener {
                 Log.d(TAG, "Product info with ID $productId deleted from Firestore")

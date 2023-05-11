@@ -142,7 +142,7 @@ class AddProductsFragment : Fragment() {
                 shipNeeds
             )
 
-            val collectionRef = db.collection("sellerProduct").document(productId)
+            val collectionRef = db.collection("SellerProductItem").document(productId)
             collectionRef.set(item)
             Toast.makeText(context, "Record Successfully added!", Toast.LENGTH_SHORT).show()
 

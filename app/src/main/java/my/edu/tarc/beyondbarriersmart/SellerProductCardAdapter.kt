@@ -22,12 +22,5 @@ class SellerProductCardAdapter(private val products: List<SellerProductItem>)
         holder.bindProduct(products[position])
     }
 
-    //to refresh the view
-//    fun updateData(newData: List<SellerProductItem>) {
-//        productList.clear()
-//        productList.addAll(newData)
-//        notifyDataSetChanged()
-//    }
-
 
 }
