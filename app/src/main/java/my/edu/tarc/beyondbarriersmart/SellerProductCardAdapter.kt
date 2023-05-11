@@ -1,7 +1,9 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import my.edu.tarc.beyondbarriersmart.databinding.SellerProductCardItemBinding
 
@@ -19,5 +21,13 @@ class SellerProductCardAdapter(private val products: List<SellerProductItem>)
     override fun onBindViewHolder(holder: SellerProductCardViewHolder, position: Int) {
         holder.bindProduct(products[position])
     }
+
+    //to refresh the view
+//    fun updateData(newData: List<SellerProductItem>) {
+//        productList.clear()
+//        productList.addAll(newData)
+//        notifyDataSetChanged()
+//    }
+
 
 }
