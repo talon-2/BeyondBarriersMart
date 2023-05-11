@@ -1,27 +1,24 @@
 package my.edu.tarc.beyondbarriersmart
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.view.Window
-import android.widget.GridLayout
+import android.widget.Button
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import my.edu.tarc.beyondbarriersmart.databinding.ActivityMyProductsBinding
-import my.edu.tarc.beyondbarriersmart.databinding.SellerProductCardItemBinding
-import org.intellij.lang.annotations.JdkConstants.BoxLayoutAxis
 
 class MyProductsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyProductsBinding
     private val db = Firebase.firestore
     private val noteRef = db.collection("SellerProductItem")
     private val myObjects = mutableListOf<SellerProductItem>()
+    private lateinit var addButton : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +28,8 @@ class MyProductsActivity : AppCompatActivity() {
         setContentView(binding.root)
         readData() //prayge
         dummydata() //to be removed once database is implemented
+
+        addButton = findViewById(R.id.listAddButton)
 
         val sellerProductItem = this
         binding.sellerProductsRecyclerView.apply{
@@ -42,7 +41,12 @@ class MyProductsActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .add(R.id.my_products_fragment_container, bottomNavigationFragment)
             .commit()
-        
+
+        addButton.setOnClickListener(){
+            val intent = Intent(this, AddProductsActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     //to be removed once database is implemented
@@ -86,7 +90,6 @@ class MyProductsActivity : AppCompatActivity() {
         }
 
     }
-
 
     private fun dummydata() {
 //        val item1 = SellerProductItem(

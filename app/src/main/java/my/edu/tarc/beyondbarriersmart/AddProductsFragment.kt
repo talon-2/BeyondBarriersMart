@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide
 import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
-import java.util.*
+import java.util.UUID.randomUUID
 
 class AddProductsFragment : Fragment() {
 
@@ -34,8 +34,6 @@ class AddProductsFragment : Fragment() {
 
     //image input field
     private val SELECT_IMAGE_REQUEST_CODE = 1
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,8 +88,8 @@ class AddProductsFragment : Fragment() {
     fun setupImg(): String {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
-        val randomId = "${UUID.randomUUID()}"
-        val imageRef = storageRef.child("$randomId.jpg")
+        val randomId = "${randomUUID().toString().substring(0, 8)}"
+        val imageRef = storageRef.child("$randomId.image")
 
         val bitmap = (productImageButton.drawable as BitmapDrawable).bitmap
         val baos = ByteArrayOutputStream()
@@ -164,7 +162,7 @@ class AddProductsFragment : Fragment() {
 
         val generatedString = setupImg()
         val productId = "PROD$generatedString"
-        val productImage = "$generatedString.jpg"
+        val productImage = "$generatedString.image"
         val productName = productNameInput.text.toString()
         val productDescription = productDescriptionInput.text.toString()
         val productPrice = productPriceInput.text.toString().toFloat()
@@ -195,7 +193,10 @@ class AddProductsFragment : Fragment() {
             collectionRef.set(item)
             Toast.makeText(context, "Record Successfully added!", Toast.LENGTH_SHORT).show()
 
-            //clear everything
+//            val intent = Intent(requireContext(), MyProductsActivity::class.java)
+//            startActivity(intent)
+//            requireActivity().finish()
+
         }
 
         builder.setNegativeButton("No") { dialog, which ->

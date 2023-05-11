@@ -185,5 +185,6 @@
     <string name="view_further_tap_bar">To view further item details, tap on the bar.</string>
     <string name="view_spending_chart">View Spending Chart</string>
     <string name="view_ongoing_deliveries">View Ongoing Deliveries</string>
+    <string name="addMyProductButton">Add Product</string>
 
 </resources>
