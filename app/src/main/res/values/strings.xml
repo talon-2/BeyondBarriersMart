@@ -172,7 +172,7 @@
     <string name="birth_date">Date of Birth</string>
     <string name="upload_file">Upload File</string>
 
-    <!-- strings related to profile -->
+    <!-- strings related to buyer profile -->
     <string name="profile">Profile</string>
     <string name="username_sample">User5432</string>
     <string name="last_purchase">Last Purchase:</string>
@@ -195,5 +195,15 @@
     <string name="view_further_tap_bar">To view further item details, tap on the bar.</string>
     <string name="view_spending_chart">View Spending Chart</string>
     <string name="view_ongoing_deliveries">View Ongoing Deliveries</string>
+
+    <!-- strings related to seller profile -->
+    <string name="seller_profile">Seller Profile</string>
+    <string name="view_my_products">View My Products</string>
+    <string name="add_product">Add Product</string>
+    <string name="orders_received">Orders Received</string>
+    <string name="name_date">Name/Date</string>
+    <string name="amount">Amount</string>
+    <string name="status">Status</string>
+    <string name="seller_name_sample">Joe Mahma</string>
 
 </resources>
