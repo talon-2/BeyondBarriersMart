@@ -172,5 +172,18 @@
     <string name="birth_date">Date of Birth</string>
     <string name="upload_file">Upload File</string>
 
+    <!-- strings related to profile -->
+    <string name="username_sample">User5432</string>
+    <string name="last_purchase">Last Purchase:</string>
+    <string name="last_purchase_time_sample">69 minute(s) ago</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="saved_payment_methods">Saved Payment Methods</string>
+    <string name="add_payment_method">Add Payment Method ></string>
+    <string name="saved_addresses">Saved Addresses</string>
+    <string name="add_address">Add Address ></string>
+    <string name="history">History</string>
+    <string name="view_further_tap_bar">To view further item details, tap on the bar.</string>
+    <string name="view_spending_chart">View Spending Chart</string>
+    <string name="view_ongoing_deliveries">View Ongoing Deliveries</string>
 
 </resources>
