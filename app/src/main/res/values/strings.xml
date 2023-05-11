@@ -133,6 +133,7 @@
     <string name="checkoutProceedButton">Proceed</string>
     <string name="orderSummaryName">Name</string>
     <string name="orderSummaryCost">Cost</string>
+
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -147,6 +148,42 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="dont_have_account">Don\'t have an account?</string>
     <string name="create_new_account">Create a new account</string>
+    <string name="title_activity_register">RegisterActivity</string>
 
+    <!-- Strings related to register -->
+    <string name="register_seller">I want to register as a seller instead</string>
+    <string name="welcome_seller">Welcome new seller!</string>
+    <string name="seller_description">We only offer selling services to those in need. Please provide evidence upon registration.</string>
+    <string name="start_journey">Start your journey now!</string>
+
+    <string name="register_buyer">I want to register as a buyer instead</string>
+    <string name="welcome_user">Welcome new user!</string>
+    <string name="user_description">We only offer selling services to those in need. Please provide evidence upon registration.</string>
+
+    <string name="username">Username</string>
+    <string name="accountName">AccountName</string>
+    <string name="email">Email</string>
+    <string name="email_sample">sample@gmail.com</string>
+    <string name="retype_password">Retype Password</string>
+    <string name="oku_cert">OKU Certificate</string>
+    <string name="register">Register</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="phone_number_sample">+60111111111</string>
+    <string name="birth_date">Date of Birth</string>
+    <string name="upload_file">Upload File</string>
+
+    <!-- strings related to profile -->
+    <string name="username_sample">User5432</string>
+    <string name="last_purchase">Last Purchase:</string>
+    <string name="last_purchase_time_sample">69 minute(s) ago</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="saved_payment_methods">Saved Payment Methods</string>
+    <string name="add_payment_method">Add Payment Method ></string>
+    <string name="saved_addresses">Saved Addresses</string>
+    <string name="add_address">Add Address ></string>
+    <string name="history">History</string>
+    <string name="view_further_tap_bar">To view further item details, tap on the bar.</string>
+    <string name="view_spending_chart">View Spending Chart</string>
+    <string name="view_ongoing_deliveries">View Ongoing Deliveries</string>
 
 </resources>

@@ -1,9 +1,14 @@
 package my.edu.tarc.beyondbarriersmart
 
+import androidx.fragment.app.Fragment
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -15,14 +20,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.fragment_add_products)
         setContentView(R.layout.activity_main)
 
-        //call in a fragment
-        val testFragment = AddProductsFragment()
+        val testFragment = BuyerProfileFragment()
 
-        //Add BottomNavigationFragment
+//         Add BottomNavigationFragment
         val bottomNavigationFragment = BottomNavFragment()
+
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, testFragment)
             .add(R.id.fragment_container, bottomNavigationFragment)
@@ -31,7 +35,5 @@ class MainActivity : AppCompatActivity() {
         //starting a activity (to be placed in an if else statement.)
         //some Activities can only be seen if you run it instead of looking it from the Design preview.
         //startActivity(Intent(this,MyProductsActivity::class.java))
-
-
     }
 }
