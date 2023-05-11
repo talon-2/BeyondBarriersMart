@@ -110,7 +110,56 @@ class AddProductsFragment : Fragment() {
         return randomId
     }
 
+    fun validatedInput() : Boolean{
+        val validationErrors: MutableList<String> = mutableListOf()
+
+        if (productImageButton.drawable == null){
+            validationErrors.add("- No Product Image Assigned.\n")
+        }
+        if (productNameInput.text.isNullOrEmpty()){
+            validationErrors.add("- Product Name is Empty.\n")
+        }
+        if (productDescriptionInput.text.isNullOrEmpty()){
+            validationErrors.add("- Product Description is Empty.\n")
+        }
+        if (productPriceInput.text.isNullOrEmpty()){
+            validationErrors.add("- Product Price is Empty.\n")
+        }
+        if (productStockInput.text.isNullOrEmpty()){
+            validationErrors.add("- Product Stock is Empty.\n")
+        }
+
+        if(!validationErrors.isEmpty()){
+            //build the validation string
+            var valString : String = ""
+            validationErrors.forEach(){
+                valString = validationErrors.joinToString(separator = ",")
+            }
+
+            //pop up
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Warning")
+            builder.setMessage("Failed to add record.\n" + valString)
+
+            builder.setNegativeButton("Ok") { dialog, which ->
+                // do nothing.
+            }
+
+            val dialog = builder.create()
+            dialog.show()
+
+            return false
+        }
+
+        else return true
+
+
+    }
+
     fun saveProduct(){
+
+        if(!validatedInput()) return;
+
         val db = (activity as MainActivity).db
 
         val generatedString = setupImg()
@@ -142,7 +191,7 @@ class AddProductsFragment : Fragment() {
                 shipNeeds
             )
 
-            val collectionRef = db.collection("sellerProduct").document(productId)
+            val collectionRef = db.collection("SellerProductItem").document(productId)
             collectionRef.set(item)
             Toast.makeText(context, "Record Successfully added!", Toast.LENGTH_SHORT).show()
 
