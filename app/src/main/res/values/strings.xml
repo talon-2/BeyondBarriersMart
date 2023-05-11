@@ -156,7 +156,7 @@
     <string name="seller_description">We only offer selling services to those in need. Please provide evidence upon registration.</string>
     <string name="start_journey">Start your journey now!</string>
 
-    <string name="register_user">I want to register as a buyer instead</string>
+    <string name="register_buyer">I want to register as a buyer instead</string>
     <string name="welcome_user">Welcome new user!</string>
     <string name="user_description">We only offer selling services to those in need. Please provide evidence upon registration.</string>
 
@@ -168,6 +168,7 @@
     <string name="oku_cert">OKU Certificate</string>
     <string name="register">Register</string>
     <string name="phone_number">Phone Number</string>
+    <string name="phone_number_sample">+60111111111</string>
     <string name="birth_date">Date of Birth</string>
     <string name="upload_file">Upload File</string>
 

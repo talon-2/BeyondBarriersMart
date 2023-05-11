@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -44,25 +45,23 @@ class MainActivity : AppCompatActivity() {
     private fun registrationThings() {
         val registerAsBuyerOrSellerText: TextView = findViewById(R.id.register_seller_or_buyer_clickable_text)
         val sellerFragment = SellerRegistrationFragment()
-        val buyerFragment = SellerRegistrationFragment()
+        val buyerFragment = BuyerRegistrationFragment()
+
+        supportFragmentManager.beginTransaction()
+            .add(R.id.register_form_fragment_layout, buyerFragment)
+            .commit()
 
         registerAsBuyerOrSellerText.setOnClickListener {
             isSellerRegistration = !isSellerRegistration
 
-            var showFragment: Fragment
             if (isSellerRegistration) {
-                registerAsBuyerOrSellerText.setText(getString(R.string.register_user))
-                showFragment = sellerFragment
+                registerAsBuyerOrSellerText.setText(getString(R.string.register_buyer))
+                supportFragmentManager.beginTransaction().replace(R.id.register_form_fragment_layout, sellerFragment).commit()
             }
             else {
                 registerAsBuyerOrSellerText.setText(getString(R.string.register_seller))
-                showFragment = buyerFragment
+                supportFragmentManager.beginTransaction().replace(R.id.register_form_fragment_layout, buyerFragment).commit()
             }
-
-            supportFragmentManager.beginTransaction()
-                .add(R.id.register_form_fragment_layout, showFragment)
-                .commit()
-
         }
     }
 }
