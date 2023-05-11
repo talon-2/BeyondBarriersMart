@@ -12,6 +12,11 @@
         android:theme="@style/Theme.BeyondBarriersMart"
         tools:targetApi="31">
         <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:label="@string/title_activity_register"
+            android:theme="@style/Theme.BeyondBarriersMart.NoActionBar" />
+        <activity
             android:name=".MyProductsActivity"
             android:exported="false" />
         <activity

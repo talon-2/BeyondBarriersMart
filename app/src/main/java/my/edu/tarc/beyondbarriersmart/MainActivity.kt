@@ -1,8 +1,12 @@
 package my.edu.tarc.beyondbarriersmart
 
+import androidx.fragment.app.Fragment
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.widget.FrameLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
@@ -13,16 +17,20 @@ class MainActivity : AppCompatActivity() {
     val db = Firebase.firestore
     private lateinit var bottomNavigationView: BottomNavigationView
 
+    var isSellerRegistration = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.fragment_add_products)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.fragment_add_products)
+        setContentView(R.layout.activity_register)
 
-        //call in a fragment
-//        val testFragment = AddProductsFragment()
+        registrationThings()
 
-        // Add BottomNavigationFragment
+//        val testFragment = SellerRegistrationFragment()
+
+//         Add BottomNavigationFragment
 //        val bottomNavigationFragment = BottomNavFragment()
+
 //        supportFragmentManager.beginTransaction()
 //            .add(R.id.fragment_container, testFragment)
 //            .add(R.id.fragment_container, bottomNavigationFragment)
@@ -31,7 +39,30 @@ class MainActivity : AppCompatActivity() {
         //starting a activity (to be placed in an if else statement.)
         //some Activities can only be seen if you run it instead of looking it from the Design preview.
         //startActivity(Intent(this,MyProductsActivity::class.java))
+    }
 
+    private fun registrationThings() {
+        val registerAsBuyerOrSellerText: TextView = findViewById(R.id.register_seller_or_buyer_clickable_text)
+        val sellerFragment = SellerRegistrationFragment()
+        val buyerFragment = SellerRegistrationFragment()
 
+        registerAsBuyerOrSellerText.setOnClickListener {
+            isSellerRegistration = !isSellerRegistration
+
+            var showFragment: Fragment
+            if (isSellerRegistration) {
+                registerAsBuyerOrSellerText.setText(getString(R.string.register_user))
+                showFragment = sellerFragment
+            }
+            else {
+                registerAsBuyerOrSellerText.setText(getString(R.string.register_seller))
+                showFragment = buyerFragment
+            }
+
+            supportFragmentManager.beginTransaction()
+                .add(R.id.register_form_fragment_layout, showFragment)
+                .commit()
+
+        }
     }
 }
