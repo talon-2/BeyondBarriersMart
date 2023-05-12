@@ -27,6 +27,12 @@ class SellerProfileFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        // read object
+        // create new seller item object
+        // spawn new instance
+        // put in data
+        // display
     }
 
     override fun onCreateView(

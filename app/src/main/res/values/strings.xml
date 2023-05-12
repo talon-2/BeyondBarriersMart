@@ -205,5 +205,12 @@
     <string name="amount">Amount</string>
     <string name="status">Status</string>
     <string name="seller_name_sample">Joe Mahma</string>
+    <string name="seller_order_item_name_sample">Beanie Dark Grey</string>
+    <string name="seller_order_item_date_sample">20/1/2023</string>
+    <string name="seller_order_item_amount_sample">69</string>
+    <string name="seller_order_item_status_sample">Return</string>
+    <string name="seller_order_item_address_sample">Kimberly 234, Mask Street, California, 4000 New Order</string>
+    <string name="address">Address</string>
+    <string name="mark_as_done">Mark As Done</string>
 
 </resources>
