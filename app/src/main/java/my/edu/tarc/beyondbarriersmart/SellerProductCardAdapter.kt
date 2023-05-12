@@ -10,9 +10,15 @@ import my.edu.tarc.beyondbarriersmart.databinding.SellerProductCardItemBinding
 class SellerProductCardAdapter(private val products: List<SellerProductItem>)
     : RecyclerView.Adapter<SellerProductCardViewHolder>()
 {
+    private lateinit var adapter: SellerProductCardAdapter
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SellerProductCardViewHolder {
         val from = LayoutInflater.from(parent.context)
         val binding = SellerProductCardItemBinding.inflate(from, parent, false)
+
+//        adapter = SellerProductCardAdapter(productList)
+//        recyclerView.adapter = adapter
+
         return SellerProductCardViewHolder(binding)
     }
 
@@ -21,6 +27,7 @@ class SellerProductCardAdapter(private val products: List<SellerProductItem>)
     override fun onBindViewHolder(holder: SellerProductCardViewHolder, position: Int) {
         holder.bindProduct(products[position])
     }
+
 
 
 }

@@ -20,9 +20,11 @@ class MyProductsActivity : AppCompatActivity() {
     private val myObjects = mutableListOf<SellerProductItem>()
     private lateinit var addButton : Button
 
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: SellerProductCardAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMyProductsBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
@@ -49,10 +51,10 @@ class MyProductsActivity : AppCompatActivity() {
         }
     }
 
-    //to be removed once database is implemented
 
 
     private fun readData(){
+        val tempProductList = mutableListOf<SellerProductItem>()
         noteRef.get().addOnCompleteListener { task ->
             if(task.isSuccessful){
 
@@ -76,14 +78,17 @@ class MyProductsActivity : AppCompatActivity() {
                     "${data?.get("shipNeed")}".toBoolean()
                 )
                 productList.add(item)
-
+                tempProductList.add(item)
                 }
 
                 val adapter = SellerProductCardAdapter(productList)
                 val recyclerView = findViewById<RecyclerView>(R.id.sellerProductsRecyclerView)
                 recyclerView.adapter = adapter
                 recyclerView.layoutManager = LinearLayoutManager(this)
-//
+                productList.clear()
+                productList.addAll(tempProductList)
+                adapter.notifyDataSetChanged()
+
             }
         }.addOnFailureListener { exception ->
             Log.w(TAG, "There is an error with reading the database (Source: MyProductsActivity).", exception)

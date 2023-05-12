@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         //starting a activity (to be placed in an if else statement.)
         //some Activities can only be seen if you run it instead of looking it from the Design preview.
-        //startActivity(Intent(this,MyProductsActivity::class.java))
+        startActivity(Intent(this,MyProductsActivity::class.java))
         //finish()
     }
 }

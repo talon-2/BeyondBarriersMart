@@ -54,8 +54,12 @@ class AddProductsFragment : Fragment() {
         shipNeedsInput = view.findViewById(R.id.shipServiceRequiredCb)
         submitButton = view.findViewById(R.id.addProductButton)
 
-        submitButton.setOnClickListener{
+        submitButton.setOnClickListener(){
             saveProduct()
+
+                val intent = Intent(requireActivity(), MyProductsActivity::class.java)
+                (requireActivity() as AddProductsActivity).startActivity(intent)
+
         }
 
         productImageButton.setOnClickListener{
@@ -193,9 +197,7 @@ class AddProductsFragment : Fragment() {
             collectionRef.set(item)
             Toast.makeText(context, "Record Successfully added!", Toast.LENGTH_SHORT).show()
 
-//            val intent = Intent(requireContext(), MyProductsActivity::class.java)
-//            startActivity(intent)
-//            requireActivity().finish()
+            //callback.invoke()
 
         }
 
@@ -205,6 +207,8 @@ class AddProductsFragment : Fragment() {
 
         val dialog = builder.create()
         dialog.show()
+
+
     }
 
 }
