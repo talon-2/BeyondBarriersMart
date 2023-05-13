@@ -139,7 +139,8 @@
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
+    <string name="welcome">Welcome!</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login">Login</string>
@@ -153,12 +154,11 @@
     <!-- Strings related to register -->
     <string name="register_seller">I want to register as a seller instead</string>
     <string name="welcome_seller">Welcome new seller!</string>
-    <string name="seller_description">We only offer selling services to those in need. Please provide evidence upon registration.</string>
-    <string name="start_journey">Start your journey now!</string>
+    <string name="seller_description">We only offer selling services to those in need. Please provide evidence upon registration.\n\nStart your journey now!</string>
 
     <string name="register_buyer">I want to register as a buyer instead</string>
     <string name="welcome_user">Welcome new user!</string>
-    <string name="user_description">We only offer selling services to those in need. Please provide evidence upon registration.</string>
+    <string name="user_description">Purchasing products in this app will directly pay for the services of people who are in need.</string>
 
     <string name="username">Username</string>
     <string name="accountName">AccountName</string>

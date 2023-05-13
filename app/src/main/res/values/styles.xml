@@ -6,4 +6,20 @@
         <item name="colorPrimaryDark">#FF3700B3</item>
         <item name="colorAccent">#FFFFFFFF</item>
     </style>
+
+    <style name="clickable_text">
+        <item name="android:textStyle">normal</item>
+        <item name="android:selectable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:selectAllOnFocus">false</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#33A5FF</item>
+    </style>
+
+    <style name="black_outline_text">
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">1.7</item>
+        <item name="android:shadowDy">1.5</item>
+        <item name="android:shadowRadius">1.5</item>
+    </style>
 </resources>
