@@ -117,7 +117,6 @@ class SpendingChartActivity : AppCompatActivity() {
 
             val query = purchaseRef.whereEqualTo("custId", custId).whereEqualTo("date", dateToCheck)
 
-            var count = 0
             //look through the database, loop through every record
             query.get().addOnSuccessListener { documents ->
 
@@ -125,9 +124,6 @@ class SpendingChartActivity : AppCompatActivity() {
                     val purchaseData = document.data
 
                     barList.add(BarEntry(day.toFloat(), "${purchaseData?.get("purchaseAmt")}".toFloat()))
-
-                    Log.d(TAG, "AA: " + barList[count] + "COUNT: " + count)
-                    count++
 
                     barDataSet = BarDataSet(barList, "Spendings")
                     barDataSet.setDrawValues(false)
