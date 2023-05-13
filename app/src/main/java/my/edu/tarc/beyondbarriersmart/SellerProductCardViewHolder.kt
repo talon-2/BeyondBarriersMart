@@ -1,7 +1,9 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
+import android.content.Intent.getIntent
 import android.graphics.BitmapFactory
 import android.util.Log
 import android.widget.Button
@@ -11,6 +13,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import my.edu.tarc.beyondbarriersmart.databinding.SellerProductCardItemBinding
+
 
 class SellerProductCardViewHolder (
     private val  sellerProductCardItemBinding: SellerProductCardItemBinding
@@ -98,5 +101,4 @@ class SellerProductCardViewHolder (
                 Log.w(TAG, "Error deleting product with ID $productId from Firestore", e)
             }
     }
-
 }

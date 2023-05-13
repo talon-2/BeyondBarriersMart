@@ -15,6 +15,8 @@ import android.view.ViewGroup
 import android.widget.*
 import com.bumptech.glide.Glide
 import android.util.Log
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
 import java.util.UUID.randomUUID
@@ -56,10 +58,6 @@ class AddProductsFragment : Fragment() {
 
         submitButton.setOnClickListener(){
             saveProduct()
-
-                val intent = Intent(requireActivity(), MyProductsActivity::class.java)
-                (requireActivity() as AddProductsActivity).startActivity(intent)
-
         }
 
         productImageButton.setOnClickListener{
@@ -162,7 +160,7 @@ class AddProductsFragment : Fragment() {
 
         if(!validatedInput()) return;
 
-        val db = (activity as MainActivity).db
+        val db = Firebase.firestore
 
         val generatedString = setupImg()
         val productId = "PROD$generatedString"
@@ -181,7 +179,7 @@ class AddProductsFragment : Fragment() {
         builder.setPositiveButton("Yes") { dialog, which ->
             val item = SellerProductItem(
                 productId,
-                "tempSellerID1",
+                "S0001",
                 productImage,
                 productName,
                 productDescription,
@@ -190,14 +188,16 @@ class AddProductsFragment : Fragment() {
                 0,
                 0f,
                 productPrice,
-                shipNeeds
+                shipNeeds,
             )
 
             val collectionRef = db.collection("SellerProductItem").document(productId)
             collectionRef.set(item)
             Toast.makeText(context, "Record Successfully added!", Toast.LENGTH_SHORT).show()
 
-            //callback.invoke()
+            //requireActivity().supportFragmentManager.beginTransaction().remove(this@AddProductsFragment).commit()
+            requireActivity().onBackPressed()
+
 
         }
 
@@ -207,8 +207,6 @@ class AddProductsFragment : Fragment() {
 
         val dialog = builder.create()
         dialog.show()
-
-
     }
 
 }
