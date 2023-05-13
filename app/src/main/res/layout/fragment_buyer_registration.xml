@@ -21,29 +21,34 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/editTextDate"
+                android:id="@+id/buyer_date_of_birth_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_input"
                 android:drawableEnd="@drawable/ic_calendar"
                 android:ems="10"
+                android:hint="@string/birth_date_sample"
                 android:inputType="date"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
                 android:paddingStart="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5"
+                app:layout_constraintTop_toBottomOf="@+id/buyer_phone_number_input"
                 app:layout_constraintWidth_percent="0.6" />
 
             <EditText
-                android:id="@+id/editTextTextPassword3"
+                android:id="@+id/buyer_password_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_input"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:ems="10"
                 android:hint="@string/prompt_password"
                 android:inputType="textPassword"
@@ -53,7 +58,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4"
+                app:layout_constraintTop_toBottomOf="@+id/buyer_email_input"
                 app:layout_constraintWidth_percent="0.6" />
 
             <TextView
@@ -61,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/username"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
+                app:layout_constraintStart_toStartOf="@+id/buyer_username_input"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -69,23 +74,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/birth_date"
-                app:layout_constraintBottom_toTopOf="@+id/editTextDate"
-                app:layout_constraintStart_toStartOf="@+id/editTextDate" />
+                app:layout_constraintBottom_toTopOf="@+id/buyer_date_of_birth_input"
+                app:layout_constraintStart_toStartOf="@+id/buyer_date_of_birth_input" />
 
             <TextView
                 android:id="@+id/textView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName4"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName4" />
+                app:layout_constraintBottom_toTopOf="@+id/buyer_email_input"
+                app:layout_constraintStart_toStartOf="@+id/buyer_email_input" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName4"
+                android:id="@+id/buyer_email_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_input"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:ems="10"
                 android:hint="@string/email_sample"
                 android:inputType="textPersonName"
@@ -95,7 +102,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3"
+                app:layout_constraintTop_toBottomOf="@+id/buyer_username_input"
                 app:layout_constraintWidth_percent="0.6" />
 
             <TextView
@@ -103,14 +110,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/phone_number"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName5"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName5" />
+                app:layout_constraintBottom_toTopOf="@+id/buyer_phone_number_input"
+                app:layout_constraintStart_toStartOf="@+id/buyer_phone_number_input" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName3"
+                android:id="@+id/buyer_username_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/custom_input"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:ems="10"
                 android:hint="@string/accountName"
                 android:inputType="textPersonName"
@@ -124,11 +133,13 @@
                 app:layout_constraintWidth_percent="0.6" />
 
             <EditText
-                android:id="@+id/editTextTextPassword4"
+                android:id="@+id/buyer_password_retype_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_input"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:ems="10"
                 android:hint="@string/retype_password"
                 android:inputType="textPassword"
@@ -138,15 +149,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword3"
+                app:layout_constraintTop_toBottomOf="@+id/buyer_password_input"
                 app:layout_constraintWidth_percent="0.6" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/buyer_phone_number_input"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_input"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:ems="10"
                 android:hint="@string/phone_number_sample"
                 android:inputType="textPersonName"
@@ -156,7 +169,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword4"
+                app:layout_constraintTop_toBottomOf="@+id/buyer_password_retype_input"
                 app:layout_constraintWidth_percent="0.6" />
 
             <TextView
@@ -164,16 +177,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/prompt_password"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword3"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPassword3" />
+                app:layout_constraintBottom_toTopOf="@+id/buyer_password_input"
+                app:layout_constraintStart_toStartOf="@+id/buyer_password_input" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/retype_password"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword4"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPassword4" />
+                app:layout_constraintBottom_toTopOf="@+id/buyer_password_retype_input"
+                app:layout_constraintStart_toStartOf="@+id/buyer_password_retype_input" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
