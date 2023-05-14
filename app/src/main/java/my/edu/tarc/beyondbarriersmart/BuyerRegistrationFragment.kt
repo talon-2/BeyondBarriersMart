@@ -1,5 +1,6 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.util.Patterns
@@ -13,6 +14,40 @@ import java.util.Calendar
 class BuyerRegistrationFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        val view: View = inflater.inflate(R.layout.fragment_buyer_registration, container, false)
+
+        // create pop out date selector for date of birth
+        val dateOfBirthPicker = view.findViewById<EditText>(R.id.buyer_date_of_birth_input)
+        dateOfBirthPicker!!.setOnClickListener {
+            val c = Calendar.getInstance()
+
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+            // on below line we are creating a
+            // variable for date picker dialog.
+            val datePickerDialog = DatePickerDialog(
+                // on below line we are passing context.
+                this.requireContext(),
+                { view, year, monthOfYear, dayOfMonth ->
+                    // on below line we are setting
+                    // date to our edit text.
+                    val date = (dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year)
+                    dateOfBirthPicker.setText(date)
+                },
+                // on below line we are passing year, month
+                // and day for the selected date in our date picker.
+                year, month, day)
+
+            datePickerDialog.show()
+        }
+        return view
     }
 
     public fun validate(): Boolean {
@@ -49,7 +84,7 @@ class BuyerRegistrationFragment : Fragment() {
         }
 
         val currYear = Calendar.getInstance().get(Calendar.YEAR)
-        val isInvalidYear = currYear - 18 > dateOfBirth!!.text.toString()!!.split("/").last().toInt()
+        val isInvalidYear = currYear - 18 <= dateOfBirth!!.text.toString()!!.split("/").last().toInt()
         if (isInvalidYear) {
             dateOfBirth!!.error = getString(R.string.underage)
             result = false

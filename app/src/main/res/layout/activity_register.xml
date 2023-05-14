@@ -78,12 +78,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/register_form_fragment_layout"
-            app:layout_constraintWidth_percent="0.5" />
+            app:layout_constraintWidth_percent="0.4" />
 
         <FrameLayout
             android:id="@+id/register_form_fragment_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/register_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_percent="0.77"
             app:layout_constraintStart_toStartOf="parent"

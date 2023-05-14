@@ -42,7 +42,6 @@ class LoginFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
         username_input = view.findViewById(R.id.login_username_edit)
         password_input = view.findViewById(R.id.login_password_edit)
-        forgot_password_clickable_text = view.findViewById(R.id.forgot_password_clickable_text)
         create_new_account_clickable_text = view.findViewById(R.id.create_account_clickable_text)
         loginButton = view.findViewById(R.id.login_button)
 
@@ -52,12 +51,8 @@ class LoginFragment : Fragment() {
             }
         }
 
-        forgot_password_clickable_text.setOnClickListener(){
-            //advisable to not do it if you dont have time
-        }
-
         create_new_account_clickable_text.setOnClickListener(){
-            //i just really cant do fragment navigations AAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHH HOW DO I DO THIS
+            activity?.startActivity(Intent(activity, RegisterActivity::class.java))
         }
 
         return view

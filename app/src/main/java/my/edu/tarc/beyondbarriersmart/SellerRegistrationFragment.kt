@@ -14,6 +14,13 @@ class SellerRegistrationFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_seller_registration, container, false)
+    }
+
     public fun validate(): Boolean {
         var result = true;
         val username: EditText? = view?.findViewById(R.id.seller_username_input)
