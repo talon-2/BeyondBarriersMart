@@ -10,7 +10,7 @@
         tools:layout="@layout/activity_category" />
     <fragment
         android:id="@+id/nav_product"
-        android:name="my.edu.tarc.beyondbarriersmart.ProductFragment"
+        android:name="my.edu.tarc.beyondbarriersmart.ProductActivity"
         android:label="@string/product_page_name"
-        tools:layout="@layout/fragment_product" />
+        tools:layout="@layout/activity_product" />
 </navigation>

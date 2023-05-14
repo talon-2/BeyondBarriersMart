@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
+    android:id="@+id/categoryContraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_rowWeight="1"
@@ -229,9 +229,10 @@
             android:id="@+id/productGridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
             android:horizontalSpacing="4dp"
-            android:verticalSpacing="4dp"
-            android:numColumns="3"/>
+            android:numColumns="3"
+            android:verticalSpacing="4dp" />
 
     </ScrollView>
 
