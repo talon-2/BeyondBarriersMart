@@ -5,7 +5,7 @@ class Customer (
     var username: String,
     var email: String,
     var password: String,
-    var phoneNumber: String,
+    var phoneNo: String,
     var dateOfBirth: String,
     var address: String,
     var bankName: String,

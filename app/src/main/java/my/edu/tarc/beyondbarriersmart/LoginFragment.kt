@@ -24,6 +24,7 @@ import com.google.firebase.ktx.Firebase
 class LoginFragment : Fragment() {
     companion object {
         val sellerId = "sellerId"
+        val cert = "cert"
         val custId = "custId"
         val address = "address"
         val bankName = "bankName"
@@ -146,12 +147,13 @@ class LoginFragment : Fragment() {
                             context?.getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
                         val editor = sharedPreferences?.edit()
 
-                        editor?.putString("${seller?.get("sellerId")}",  currentSellerId)
-                        editor?.putString("${seller?.get("bankName")}",  currentBankName)
-                        editor?.putString("${seller?.get("cardNo")}",  currentCardNo)
-                        editor?.putString("${seller?.get("email")}",  currentEmail)
-                        editor?.putString("${seller?.get("password")}",  currentPassword)
-                        editor?.putString("${seller?.get("username")}",  currentUsername)
+                        editor?.putString(LoginFragment.sellerId, "${seller?.get("sellerId")}")
+                        editor?.putString(LoginFragment.username, "${seller?.get("username")}")
+                        editor?.putString(LoginFragment.email, "${seller?.get("email")}")
+                        editor?.putString(LoginFragment.password, "${seller?.get("password")}")
+                        editor?.putString(LoginFragment.bankName, "${seller?.get("bankName")}")
+                        editor?.putString(LoginFragment.cardNo, "${seller?.get("cardNo")}")
+                        editor?.putString(LoginFragment.cert, "${seller?.get("cert")}")
 
                         editor?.apply()
 
@@ -167,18 +169,24 @@ class LoginFragment : Fragment() {
                     context?.getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
                 val editor = sharedPreferences?.edit()
 
-                editor?.putString("${customer?.get("custId")}",  currentCustId)
-                editor?.putString("${customer?.get("address")}",  currentAddress)
-                editor?.putString("${customer?.get("bankName")}",  currentBankName)
-                editor?.putString("${customer?.get("cardNo")}",  currentCardNo)
-                editor?.putString("${customer?.get("dateOfBirth")}",  currentDateOfBirth)
-                editor?.putString("${customer?.get("email")}",  currentEmail)
-                editor?.putString("${customer?.get("password")}",  currentPassword)
-                editor?.putString("${customer?.get("phoneNo")}",  currentPhoneNo)
-                editor?.putString("${customer?.get("profileImage")}",  currentProfileImage)
-                editor?.putString("${customer?.get("username")}",  currentUsername)
+                Log.d("Login Section", customer?.get("custId").toString())
+
+                editor?.putString(LoginFragment.custId, customer?.get("custId").toString())
+                editor?.putString(LoginFragment.username, customer?.get("username").toString())
+                editor?.putString(LoginFragment.password, customer?.get("password").toString())
+                editor?.putString(LoginFragment.email, customer?.get("email").toString())
+                editor?.putString(LoginFragment.phoneNo, customer?.get("phoneNo").toString())
+                editor?.putString(LoginFragment.dateOfBirth, customer?.get("dateOfBirth").toString())
+                editor?.putString(LoginFragment.address, customer?.get("address").toString())
+                editor?.putString(LoginFragment.bankName, customer?.get("bankName").toString())
+                editor?.putString(LoginFragment.cardNo, customer?.get("cardNo").toString())
+//                editor?.putString(LoginFragment.profileImage, customer?.get("profileImage").toString())
 
                 editor?.apply()
+
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, BuyerProfileFragment())
+                    .commit()
 
                 //navigate where the customer should go
             }

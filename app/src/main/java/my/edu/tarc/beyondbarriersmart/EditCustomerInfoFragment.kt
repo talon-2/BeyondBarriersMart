@@ -9,7 +9,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
 class EditCustomerInfoFragment : DialogFragment() {
@@ -31,13 +33,25 @@ class EditCustomerInfoFragment : DialogFragment() {
 
         val sharedPref = requireContext().getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
 
-        Log.d("EditCustomerInfo", sharedPref.getString(LoginFragment.username, usernameInput!!.text.toString()).toString())
-        Log.d("EditCustomerInfo", sharedPref.getString("username", usernameInput!!.text.toString()).toString())
-
-        usernameInput.setText(sharedPref.getString(LoginFragment.username, usernameInput!!.text.toString()))
+        usernameInput.setText(
+            sharedPref.getString(
+                LoginFragment.username,
+                usernameInput!!.text.toString()
+            )
+        )
         emailInput.setText(sharedPref.getString(LoginFragment.email, emailInput!!.text.toString()))
-        phoneNumberInput.setText(sharedPref.getString(LoginFragment.phoneNo, phoneNumberInput!!.text.toString()))
-        dateOfBirthInput.setText(sharedPref.getString(LoginFragment.dateOfBirth, dateOfBirthInput!!.text.toString()))
+        phoneNumberInput.setText(
+            sharedPref.getString(
+                LoginFragment.phoneNo,
+                phoneNumberInput!!.text.toString()
+            )
+        )
+        dateOfBirthInput.setText(
+            sharedPref.getString(
+                LoginFragment.dateOfBirth,
+                dateOfBirthInput!!.text.toString()
+            )
+        )
 
         dateOfBirthInput!!.setOnClickListener {
             val c = Calendar.getInstance()
@@ -59,7 +73,8 @@ class EditCustomerInfoFragment : DialogFragment() {
                 },
                 // on below line we are passing year, month
                 // and day for the selected date in our date picker.
-                year, month, day)
+                year, month, day
+            )
 
             datePickerDialog.show()
         }
@@ -68,6 +83,27 @@ class EditCustomerInfoFragment : DialogFragment() {
             .setView(view)
             .setTitle("Edit Information")
             .setPositiveButton("Save") { dialog, _ ->
+                val currId = sharedPref.getString(LoginFragment.custId, "")
+                val username = LoginFragment.username
+                val email = LoginFragment.email
+                val phoneNo = LoginFragment.phoneNo
+                val dateOfBirth = LoginFragment.dateOfBirth
+
+                val ref = FirebaseFirestore.getInstance().collection("Customer").document(currId!!)
+                val updates = hashMapOf<String, Any>(
+                    username to usernameInput!!.text.toString(),
+                    email to emailInput!!.text.toString(),
+                    phoneNo to phoneNumberInput!!.text.toString(),
+                    dateOfBirth to dateOfBirthInput!!.text.toString()
+                )
+
+                val editor = sharedPref.edit()
+                editor!!.putString(LoginFragment.username, usernameInput!!.text.toString())
+                editor!!.putString(LoginFragment.email, emailInput!!.text.toString())
+                editor!!.putString(LoginFragment.phoneNo, phoneNumberInput!!.text.toString())
+                editor!!.putString(LoginFragment.dateOfBirth, dateOfBirthInput!!.text.toString())
+                editor!!.apply()
+
                 dialog.dismiss()
             }
             .setNegativeButton("Cancel") { dialog, _ ->

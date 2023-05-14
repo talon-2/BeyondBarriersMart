@@ -146,7 +146,7 @@ class BuyerRegistrationFragment : Fragment() {
         }
         else {
             val currYear = Calendar.getInstance().get(Calendar.YEAR)
-            val isInvalidYear = currYear - 18 <= dateOfBirthInput?.text.toString().split("/").last().toInt()
+            val isInvalidYear = currYear - 18 <= dateOfBirthInput!!.text.toString().split("-").last().toInt()
             if (isInvalidYear) {
                 dateOfBirthInput!!.error = getString(R.string.underage)
                 result = false
