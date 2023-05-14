@@ -91,7 +91,7 @@ class BuyerRegistrationFragment : Fragment() {
                 { view, year, monthOfYear, dayOfMonth ->
                     // on below line we are setting
                     // date to our edit text.
-                    val date = (dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year)
+                    val date = (dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year)
                     dateOfBirthInput!!.setText(date)
                 },
                 // on below line we are passing year, month
@@ -183,7 +183,7 @@ class BuyerRegistrationFragment : Fragment() {
         var username = usernameInput!!.text.toString()
         var email = emailInput!!.text.toString()
         var password = passwordInput!!.text.toString()
-        var phoneNumber = phoneNumberInput!!.text.toString()
+        var phoneNo = phoneNumberInput!!.text.toString()
         var dateOfBirth = dateOfBirthInput!!.text.toString()
         var address = addressInput!!.text.toString()
         var bankName = bankNameInput!!.selectedItem.toString()
@@ -200,7 +200,7 @@ class BuyerRegistrationFragment : Fragment() {
                 username,
                 email,
                 password,
-                phoneNumber,
+                phoneNo,
                 dateOfBirth,
                 address,
                 bankName,

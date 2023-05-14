@@ -22,6 +22,20 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class LoginFragment : Fragment() {
+    companion object {
+        val sellerId = "sellerId"
+        val custId = "custId"
+        val address = "address"
+        val bankName = "bankName"
+        val cardNo = "cardNo"
+        val dateOfBirth = "dateOfBirth"
+        val email = "email"
+        val password = "password"
+        val phoneNo = "phoneNo"
+        val profileImage = "profileImage"
+        val username = "username"
+    }
+
     private lateinit var username_input: EditText
     private lateinit var password_input: EditText
     private lateinit var forgot_password_clickable_text: TextView
@@ -30,7 +44,16 @@ class LoginFragment : Fragment() {
     val db = Firebase.firestore
     val customerRef = db.collection("Customer")
     val sellerRef = db.collection("Seller")
-    var currentId = ""
+    var currentSellerId = ""
+    var currentCustId = ""
+    var currentAddress = ""
+    var currentBankName = ""
+    var currentCardNo = ""
+    var currentDateOfBirth = ""
+    var currentEmail = ""
+    var currentPassword = ""
+    var currentPhoneNo = ""
+    var currentProfileImage = ""
     var currentUsername = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -122,8 +145,14 @@ class LoginFragment : Fragment() {
                         val sharedPreferences =
                             context?.getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
                         val editor = sharedPreferences?.edit()
-                        editor?.putString("${seller?.get("custId")}", currentId)
-                        editor?.putString("${seller?.get("username")}", currentUsername)
+
+                        editor?.putString("${seller?.get("sellerId")}",  currentSellerId)
+                        editor?.putString("${seller?.get("bankName")}",  currentBankName)
+                        editor?.putString("${seller?.get("cardNo")}",  currentCardNo)
+                        editor?.putString("${seller?.get("email")}",  currentEmail)
+                        editor?.putString("${seller?.get("password")}",  currentPassword)
+                        editor?.putString("${seller?.get("username")}",  currentUsername)
+
                         editor?.apply()
 
                         //navigate where the seller should go
@@ -137,21 +166,22 @@ class LoginFragment : Fragment() {
                 val sharedPreferences =
                     context?.getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
                 val editor = sharedPreferences?.edit()
-                editor?.putString("${customer?.get("custId")}", currentId)
-                editor?.putString("${customer?.get("username")}", currentUsername)
+
+                editor?.putString("${customer?.get("custId")}",  currentCustId)
+                editor?.putString("${customer?.get("address")}",  currentAddress)
+                editor?.putString("${customer?.get("bankName")}",  currentBankName)
+                editor?.putString("${customer?.get("cardNo")}",  currentCardNo)
+                editor?.putString("${customer?.get("dateOfBirth")}",  currentDateOfBirth)
+                editor?.putString("${customer?.get("email")}",  currentEmail)
+                editor?.putString("${customer?.get("password")}",  currentPassword)
+                editor?.putString("${customer?.get("phoneNo")}",  currentPhoneNo)
+                editor?.putString("${customer?.get("profileImage")}",  currentProfileImage)
+                editor?.putString("${customer?.get("username")}",  currentUsername)
+
                 editor?.apply()
 
                 //navigate where the customer should go
             }
         }
     }
-
-    private fun forgotPassword() {
-
-    }
-
-    private fun createAccount() {
-
-    }
-
 }
