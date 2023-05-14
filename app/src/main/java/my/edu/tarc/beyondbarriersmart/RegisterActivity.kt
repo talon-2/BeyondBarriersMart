@@ -58,10 +58,18 @@ class RegisterActivity : AppCompatActivity() {
             if (isSellerRegistration) {
                 val registrationFragment = fragmentManager.findFragmentById(R.id.register_form_fragment_layout) as SellerRegistrationFragment
                 result = registrationFragment.validate()
+
+                if (result) {
+                    registrationFragment.register()
+                }
             }
             else {
                 val registrationFragment = fragmentManager.findFragmentById(R.id.register_form_fragment_layout) as BuyerRegistrationFragment
                 result = registrationFragment.validate()
+
+                if (result) {
+                    registrationFragment.register()
+                }
             }
         }
     }

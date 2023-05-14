@@ -179,7 +179,7 @@
                 android:layout_marginTop="20dp"
                 android:background="@drawable/custom_input"
                 android:ems="10"
-                android:hint="@string/card_no"
+                android:hint="@string/credit_card_number_sample"
                 android:inputType="number"
                 android:minWidth="48dp"
                 android:minHeight="48dp"

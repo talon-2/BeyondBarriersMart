@@ -60,8 +60,8 @@ class SellerRegistrationFragment : Fragment() {
             startActivityForResult(intent, REQUEST_CODE_PICK_FILE)
         }
 
-        val adapter = ArrayAdapter(this.requireContext(), androidx.transition.R.layout.support_simple_spinner_dropdown_item, listOf(resources.getStringArray(R.array.bank_names)))
-        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+        val bankNames = resources.getStringArray(R.array.bank_names)
+        val adapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_dropdown_item, bankNames)
         bankNameInput.adapter = adapter
 
         // Inflate the layout for this fragment
@@ -95,15 +95,17 @@ class SellerRegistrationFragment : Fragment() {
             result = false
         }
 
-        val visaPattern = "^4[0-9]{12}(?:[0-9]{3})?\$".toRegex()
-        val isVisa = visaPattern.matches(cardNoInput!!.text.toString())
-        if (!isVisa) {
-            cardNoInput!!.error = getString(R.string.invalid_card_no)
-            result = false
-        }
-        else if (cardNoInput!!.text.toString().isEmpty()) {
+        if (cardNoInput!!.text.toString().isEmpty()) {
             cardNoInput!!.error = getString(R.string.empty_card)
             result = false
+        }
+        else {
+            val visaPattern = "^4[0-9]{12}(?:[0-9]{3})?\$".toRegex()
+            val isVisa = visaPattern.matches(cardNoInput!!.text.toString())
+            if (!isVisa) {
+                cardNoInput!!.error = getString(R.string.invalid_card_no)
+                result = false
+            }
         }
 
         return result;
@@ -122,7 +124,7 @@ class SellerRegistrationFragment : Fragment() {
 
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Confirmation")
-        builder.setMessage("Are you sure you want to add this item? Items are automatically set up for sale once you have confirmed.")
+        builder.setMessage("Do you confirm that you want to register under these information?")
 
         builder.setPositiveButton("Yes") { dialog, which ->
             val item = Seller(
@@ -145,6 +147,9 @@ class SellerRegistrationFragment : Fragment() {
         }
 
         ++SellerRegistrationFragment.sellerID
+
+        val dialog = builder.create()
+        dialog.show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -20,18 +20,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_main)
 
-//        val testFragment = LoginFragment()
+        val testFragment = BuyerProfileFragment()
 
-//        supportFragmentManager.beginTransaction()
-//            .add(R.id.fragment_container, testFragment)
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, testFragment)
 //            .add(R.id.fragment_container, bottomNavigationFragment)
-//            .commit()
+            .commit()
 
         //starting a activity (to be placed in an if else statement.)
         //some Activities can only be seen if you run it instead of looking it from the Design preview.
-        startActivity(Intent(this,RegisterActivity::class.java))
+//        startActivity(Intent(this,RegisterActivity::class.java))
         //finish()
     }
 }
