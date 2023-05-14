@@ -31,57 +31,24 @@ class RegisterActivity : AppCompatActivity() {
         val registerAsClickableText: TextView = findViewById(R.id.register_seller_or_buyer_clickable_text)
         val registerButton: Button = findViewById(R.id.register_button)
 
-        // create pop out date selector for date of birth
-        val dateOfBirthPicker = fragmentManager.findFragmentById(R.id.register_form_fragment_layout)?.view?.findViewById<EditText>(R.id.buyer_date_of_birth_input)
-        dateOfBirthPicker?.setOnClickListener {
-            val c = Calendar.getInstance()
-
-            val year = c.get(Calendar.YEAR)
-            val month = c.get(Calendar.MONTH)
-            val day = c.get(Calendar.DAY_OF_MONTH)
-
-            // on below line we are creating a
-            // variable for date picker dialog.
-            val datePickerDialog = DatePickerDialog(
-                // on below line we are passing context.
-                this,
-                { view, year, monthOfYear, dayOfMonth ->
-                    // on below line we are setting
-                    // date to our edit text.
-                    val date = (dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year)
-                    dateOfBirthPicker.setText(date)
-                },
-                // on below line we are passing year, month
-                // and day for the selected date in our date picker.
-                year, month, day)
-
-            datePickerDialog.show()
-        }
-
         // switch between buyer and seller registration
+        switchForm()
         registerAsClickableText.setOnClickListener {
             isSellerRegistration = !isSellerRegistration
+
+            val transaction = fragmentManager.beginTransaction()
 
             if (isSellerRegistration) {
                 titlePlaceholder.setText(R.string.welcome_seller)
                 shortDescriptionPlaceholder.setText(R.string.seller_description)
                 registerAsClickableText.setText(R.string.register_buyer)
-
-                val transaction = fragmentManager.beginTransaction()
-                transaction.replace(R.id.register_form_fragment_layout, sellerFragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
             }
             else {
                 titlePlaceholder.setText(R.string.welcome_user)
                 shortDescriptionPlaceholder.setText(R.string.user_description)
                 registerAsClickableText.setText(R.string.register_seller)
-
-                val transaction = fragmentManager.beginTransaction()
-                transaction.add(R.id.register_form_fragment_layout, buyerFragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
             }
+            switchForm()
         }
 
         // register the buyer/seller
@@ -100,5 +67,16 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun register() {
+    }
+
+    private fun switchForm() {
+        val transaction = supportFragmentManager.beginTransaction()
+
+        if (isSellerRegistration) {
+            transaction.replace(R.id.register_form_fragment_layout, sellerFragment)
+        } else {
+            transaction.replace(R.id.register_form_fragment_layout, buyerFragment)
+        }
+        transaction.commit()
     }
 }

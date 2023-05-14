@@ -229,6 +229,9 @@
     <string name="empty_password">Please enter a password</string>
     <string name="taken_password">This password is taken</string>
     <string name="not_same_password">Passwords do not match</string>
+    <string name="empty_phone_number">Phone number can\'t be empty</string>
+    <string name="invalid_phone_number">Please enter a valid phone number</string>
     <string name="underage">Only 18 and above users are allowed to register</string>
+    <string name="empty_date">Date of birth can\'t be empty</string>
 
 </resources>
