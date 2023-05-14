@@ -1,9 +1,11 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -14,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -42,7 +45,7 @@ class LoginFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
         username_input = view.findViewById(R.id.login_username_edit)
         password_input = view.findViewById(R.id.login_password_edit)
-        forgot_password_clickable_text = view.findViewById(R.id.forgot_password_clickable_text)
+        forgot_password_clickable_text = view.findViewById(R.id.login_password_edit)
         create_new_account_clickable_text = view.findViewById(R.id.create_account_clickable_text)
         loginButton = view.findViewById(R.id.login_button)
 
@@ -57,7 +60,8 @@ class LoginFragment : Fragment() {
         }
 
         create_new_account_clickable_text.setOnClickListener(){
-            //i just really cant do fragment navigations AAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHH HOW DO I DO THIS
+            val intent = Intent(activity, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
         return view
@@ -81,6 +85,7 @@ class LoginFragment : Fragment() {
         return true
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun validateLogin() {
         val fetchUsername = username_input.text.toString()
         val fetchPassword = password_input.text.toString()
@@ -150,4 +155,5 @@ class LoginFragment : Fragment() {
     private fun createAccount() {
 
     }
+
 }

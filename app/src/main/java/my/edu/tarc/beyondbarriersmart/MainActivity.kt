@@ -22,16 +22,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val testFragment = BuyerRegistrationFragment()
+        val testFragment = LoginFragment()
 
-//        supportFragmentManager.beginTransaction()
-//            .add(R.id.fragment_container, testFragment)
-//            .add(R.id.fragment_container, bottomNavigationFragment)
-//            .commit()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.fragment_container, testFragment)
+            //.add(R.id.fragment_container, bottomNavigationFragment)
+            .commit()
 
         //starting a activity (to be placed in an if else statement.)
         //some Activities can only be seen if you run it instead of looking it from the Design preview.
-        //startActivity(Intent(this,MyProductsActivity::class.java))
+        startActivity(Intent(this,SpendingChartActivity::class.java))
         //finish()
     }
 }

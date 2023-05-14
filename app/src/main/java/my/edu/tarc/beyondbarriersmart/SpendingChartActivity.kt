@@ -8,23 +8,19 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 class SpendingChartActivity : AppCompatActivity() {
 
@@ -38,6 +34,8 @@ class SpendingChartActivity : AppCompatActivity() {
     private lateinit var currentYearValue: String
     private lateinit var highSpent: TextView
     private lateinit var totalSpent: TextView
+    private lateinit var refreshButton: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +45,36 @@ class SpendingChartActivity : AppCompatActivity() {
         selectedMonth = findViewById(R.id.monthSpinner)
         selectedYear = findViewById(R.id.yearSpinner)
 
+        selectedMonth.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                getChartData()
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                //do nothing
+            }
+        })
+
+        selectedYear.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parentView: AdapterView<*>?,
+                selectedItemView: View?,
+                position: Int,
+                id: Long
+            ) {
+                getChartData()
+            }
+
+            override fun onNothingSelected(parentView: AdapterView<*>?) {
+                //do nothing
+            }
+        })
+
         //initialize the values in the spinner
         currentMonthValue = selectedMonth.selectedItem.toString()
         currentYearValue = selectedYear.selectedItem.toString()
@@ -55,26 +83,21 @@ class SpendingChartActivity : AppCompatActivity() {
         highSpent = findViewById(R.id.highestSpendingAmtTextview)
         totalSpent = findViewById(R.id.totalSpendingAmtTextview)
 
+        //get Button
+        refreshButton = findViewById(R.id.spendingChartRefreshButton)
+
+        //get barchart
         barChart = findViewById(R.id.barchart)
 
         //load the barChart as a co-routine.
-        lifecycleScope.launch {
-            getChartData()
-        }
+        getChartData()
 
-//        barDataSet = BarDataSet(barList, "Spendings")
-//        barDataSet.setDrawValues(false)
-//        barChart.xAxis.setDrawLabels(false)
-//        barChart.xAxis.setDrawGridLinesBehindData(false)
-//        barData = BarData(barDataSet)
-//        barChart.data = barData
-//        barDataSet.valueTextColor = Color.BLACK
-//        barDataSet.color = Color.BLUE
-//        barChart.animateY(1000)
-//
-//        barDataSet.valueTextSize = 16f
-//        barChart.setDrawGridBackground(false)
-//        barChart.description.isEnabled = false
+
+        refreshButton.setOnClickListener(){
+            //refresh the current activity.
+            finish()
+            startActivity(getIntent())
+        }
 
         val bottomNavigationFragment = BottomNavFragment()
         supportFragmentManager.beginTransaction()
@@ -82,11 +105,14 @@ class SpendingChartActivity : AppCompatActivity() {
             .commit()
     }
 
-    private suspend fun getChartData() {
+    private fun getChartData() {
+        currentMonthValue = selectedMonth.selectedItem.toString()
+        currentYearValue = selectedYear.selectedItem.toString()
+
         //initialize the database
         val db = Firebase.firestore
         val purchaseRef = db.collection("Purchase")
-        //val productRef = db.collection("SellerProductItem")
+        val productRef = db.collection("SellerProductItem")
 
         //initialize variables
         val currentMonth = getMonthInInt(currentMonthValue)
@@ -104,7 +130,7 @@ class SpendingChartActivity : AppCompatActivity() {
 
         //variable for saving a purchase record.
         var productCost = 0f
-
+        //var totalSpentInDay = 0f //store the total amount spent in day.
         var day = 1
 
         barList = ArrayList()
@@ -112,18 +138,24 @@ class SpendingChartActivity : AppCompatActivity() {
         for (day in 1..daysInMonth) {
             getNumberOfDays(currentYearValue.toInt(), getMonthInInt(currentMonthValue)).toString()
 
+            barList.add(BarEntry(day.toFloat(), 0f)) //set the entire table first
+            var totalSpentInDay = 0f
+
             //initialize current date
             val dateToCheck = "${day}-${getMonthInInt(currentMonthValue)}-$currentYearValue"
 
             val query = purchaseRef.whereEqualTo("custId", custId).whereEqualTo("date", dateToCheck)
 
-            //look through the database, loop through every record
+            //look through the database with query
             query.get().addOnSuccessListener { documents ->
 
-                for (document in documents) {
-                    val purchaseData = document.data
-
-                    barList.add(BarEntry(day.toFloat(), "${purchaseData?.get("purchaseAmt")}".toFloat()))
+                if (documents.isEmpty){ //if it is empty, set up the barList record.
+                    barList.add(
+                        BarEntry(
+                            day.toFloat(),
+                            0f
+                        )
+                    )
 
                     barDataSet = BarDataSet(barList, "Spendings")
                     barDataSet.setDrawValues(false)
@@ -139,24 +171,84 @@ class SpendingChartActivity : AppCompatActivity() {
                     barChart.setDrawGridBackground(false)
                     barChart.description.isEnabled = false
 
-                    amtSpentInDay = "${purchaseData?.get("purchaseAmt")}".toFloat()
-
                     //check if it is the highest Spending day
-                    if (highestSpentInDay < amtSpentInDay) {
-                    highestSpentInDay = amtSpentInDay
-                    highestSpentDay = day
+                    if (highestSpentInDay < totalSpentInDay) {
+                        highestSpentInDay = totalSpentInDay
+                        highestSpentDay = day
                     }
 
                     //add up to total
-                    totalSpentInMonth += amtSpentInDay
-
-                    //reset amtSpentInDay
-                    amtSpentInDay = 0f
+                    totalSpentInMonth += totalSpentInDay
 
                     //set the textviews
-                    highSpent.text = "RM " + highestSpentInDay + " (Day " + highestSpentDay + ")"
-                    totalSpent.text = "RM " + totalSpentInMonth + " (" + selectedMonth.selectedItem.toString() + ")"
+                    highSpent.text =
+                        "RM " + highestSpentInDay + " (Day " + highestSpentDay + " " +selectedMonth.selectedItem.toString()+ " "+ selectedYear.selectedItem.toString()+")"
+                    totalSpent.text =
+                        "RM " + totalSpentInMonth + " (" + selectedMonth.selectedItem.toString() + " " + selectedYear.selectedItem.toString() + ")"
+                }
 
+                for (document in documents) { //for every purchase made on that date
+
+                    val purchaseData = document.data
+
+                    //assume that purchaseRef has productId, have a query requesting productId and their cost
+                    var currentProduct = "${purchaseData?.get("productId")}" //store the current productId
+                    var totalSpentInRecord = 0f
+                    var prodQuantity = "${purchaseData?.get("purchaseAmt")}" //get the quantity bought of that product.
+
+                    val prodQuery = productRef.whereEqualTo("productId", currentProduct) //find the related product
+
+                    //loop through the database with that query
+                    prodQuery.get().addOnSuccessListener { documents ->
+
+
+                        for (document in documents) { //for every purchase made on that date
+                            val productData = document.data
+
+                            Log.d(TAG, "TRYING TO GET :" + "${productData?.get("cost")}" + " WITH AMOUNT: " + prodQuantity)
+                            totalSpentInRecord += ("${productData?.get("cost")}".toFloat() * prodQuantity.toFloat())
+                            Log.d(TAG, "DAY :" + day + " ACCUMULATED: " + totalSpentInRecord)
+
+                            totalSpentInDay += totalSpentInRecord
+                            Log.d(TAG, "DAY :" + day + " TOTALED: " + totalSpentInDay)
+                        }
+
+                        barList.add(
+                            BarEntry(
+                                day.toFloat(),
+                                totalSpentInDay
+                            )
+                        )
+
+                        barDataSet = BarDataSet(barList, "Spendings")
+                        barDataSet.setDrawValues(false)
+                        barChart.xAxis.setDrawLabels(false)
+                        barChart.xAxis.setDrawGridLinesBehindData(false)
+                        barData = BarData(barDataSet)
+                        barChart.data = barData
+                        barDataSet.valueTextColor = Color.BLACK
+                        barDataSet.color = Color.BLUE
+                        barChart.animateY(1000)
+
+                        barDataSet.valueTextSize = 16f
+                        barChart.setDrawGridBackground(false)
+                        barChart.description.isEnabled = false
+
+                        //check if it is the highest Spending day
+                        if (highestSpentInDay < totalSpentInDay) {
+                            highestSpentInDay = totalSpentInDay
+                            highestSpentDay = day
+                        }
+
+                        //add up to total
+                        totalSpentInMonth += totalSpentInDay
+
+                        //set the textviews
+                        highSpent.text =
+                            "RM " + highestSpentInDay + " (Day " + highestSpentDay + " " +selectedMonth.selectedItem.toString()+ " "+ selectedYear.selectedItem.toString()+")"
+                        totalSpent.text =
+                            "RM " + totalSpentInMonth + " (" + selectedMonth.selectedItem.toString() + " " + selectedYear.selectedItem.toString() + ")"
+                    }
                 }
             }.addOnFailureListener { exception ->
                 Log.w(
