@@ -106,4 +106,8 @@ class BuyerRegistrationFragment : Fragment() {
 
         return result;
     }
+
+    public fun register() {
+
+    }
 }

@@ -176,7 +176,17 @@
     <string name="phone_number_sample">+60111111111</string>
     <string name="birth_date">Date of Birth</string>
     <string name="birth_date_sample">DD/MM/YYYY</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="card_no">Card Number</string>
     <string name="upload_file">Upload File</string>
+
+    <string-array name="bank_names">
+        <item>Public Bank</item>
+        <item>MayBank</item>
+        <item>CIMB</item>
+        <item>Hong Leong</item>
+        <item>AmBank</item>
+    </string-array>
 
     <!-- strings related to buyer profile -->
     <string name="profile">Profile</string>
@@ -233,5 +243,8 @@
     <string name="invalid_phone_number">Please enter a valid phone number</string>
     <string name="underage">Only 18 and above users are allowed to register</string>
     <string name="empty_date">Date of birth can\'t be empty</string>
+    <string name="empty_bank">Please enter a bank name</string>
+    <string name="empty_card">Please enter your card number</string>
+    <string name="invalid_card_no">Please enter a valid card number</string>
 
 </resources>

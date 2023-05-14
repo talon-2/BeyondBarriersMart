@@ -1,56 +1,158 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.app.Activity.RESULT_OK
+import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.provider.MediaStore
 import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
+import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class SellerRegistrationFragment : Fragment() {
+    private val REQUEST_CODE_PICK_FILE = 69
+    private lateinit var usernameInput: EditText
+    private lateinit var emailInput: EditText
+    private lateinit var passwordInput: EditText
+    private lateinit var passwordRetype: EditText
+    private lateinit var bankNameInput: Spinner
+    private lateinit var cardNoInput: EditText
+    private lateinit var certButton: Button
+    private var selectedFileUri: Uri? = null
+
+    companion object {
+        var sellerID = 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+        val view: View = inflater.inflate(R.layout.fragment_seller_registration, container, false)
+
+        usernameInput = view.findViewById(R.id.seller_username_input)
+        emailInput = view.findViewById(R.id.seller_email_input)
+        passwordInput = view.findViewById(R.id.seller_password_input)
+        passwordRetype = view.findViewById(R.id.seller_password_retype_input)
+        bankNameInput = view.findViewById(R.id.bank_name_input)
+        cardNoInput = view.findViewById(R.id.card_no_input)
+        certButton = view.findViewById(R.id.seller_upload_cert_button)
+
+        certButton.setOnClickListener{
+            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+                type = "*/*.pdf"
+                addCategory(Intent.CATEGORY_OPENABLE)
+            }
+
+            startActivityForResult(intent, REQUEST_CODE_PICK_FILE)
+        }
+
+        val adapter = ArrayAdapter(this.requireContext(), androidx.transition.R.layout.support_simple_spinner_dropdown_item, listOf(resources.getStringArray(R.array.bank_names)))
+        adapter.setDropDownViewResource(androidx.appcompat.R.layout.support_simple_spinner_dropdown_item)
+        bankNameInput.adapter = adapter
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_seller_registration, container, false)
+        return view
     }
 
     public fun validate(): Boolean {
         var result = true;
-        val username: EditText? = view?.findViewById(R.id.seller_username_input)
-        val email: EditText? = view?.findViewById(R.id.seller_email_input)
-        val password: EditText? = view?.findViewById(R.id.seller_password_input)
-        val passwordRetype: EditText? = view?.findViewById(R.id.seller_password_retype_input)
 
-        if (username!!.text.toString().isEmpty()) {
-            username!!.error = getString(R.string.empty_username)
+        if (usernameInput!!.text.toString().isEmpty()) {
+            usernameInput!!.error = getString(R.string.empty_username)
             result = false
         }
 
-        if (email!!.text.toString().isEmpty()) {
-            email!!.error = getString(R.string.empty_email)
+        if (emailInput!!.text.toString().isEmpty()) {
+            emailInput!!.error = getString(R.string.empty_email)
             result = false
         }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(email!!.text.toString()).matches()) {
-            email!!.error = getString(R.string.invalid_email)
+        else if (!Patterns.EMAIL_ADDRESS.matcher(emailInput!!.text.toString()).matches()) {
+            emailInput!!.error = getString(R.string.invalid_email)
             result = false
         }
 
-        if (password!!.text.toString().isEmpty()) {
-            password!!.error = getString(R.string.empty_password)
+        if (passwordInput!!.text.toString().isEmpty()) {
+            passwordInput!!.error = getString(R.string.empty_password)
             result = false
         }
-        else if (password!!.text.toString() != passwordRetype!!.text.toString()) {
-            password!!.error = getString(R.string.not_same_password)
+        else if (passwordInput!!.text.toString() != passwordRetype!!.text.toString()) {
+            passwordInput!!.error = getString(R.string.not_same_password)
             passwordRetype!!.error = getString(R.string.not_same_password)
             result = false
         }
 
+        val visaPattern = "^4[0-9]{12}(?:[0-9]{3})?\$".toRegex()
+        val isVisa = visaPattern.matches(cardNoInput!!.text.toString())
+        if (!isVisa) {
+            cardNoInput!!.error = getString(R.string.invalid_card_no)
+            result = false
+        }
+        else if (cardNoInput!!.text.toString().isEmpty()) {
+            cardNoInput!!.error = getString(R.string.empty_card)
+            result = false
+        }
+
         return result;
+    }
+
+    public fun register() {
+        val db = Firebase.firestore
+
+        var sellerId = String.format("S%04d", SellerRegistrationFragment.sellerID)
+        var username = usernameInput!!.text.toString()
+        var email = emailInput!!.text.toString()
+        var password = passwordInput!!.text.toString()
+        var bankName = bankNameInput!!.selectedItem.toString()
+        var cardNo = cardNoInput!!.text.toString()
+        var certImg = selectedFileUri.toString()
+
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Confirmation")
+        builder.setMessage("Are you sure you want to add this item? Items are automatically set up for sale once you have confirmed.")
+
+        builder.setPositiveButton("Yes") { dialog, which ->
+            val item = Seller(
+                sellerId,
+                username,
+                email,
+                password,
+                bankName,
+                cardNo,
+                certImg
+            )
+
+            val collectionRef = db.collection("Seller").document(sellerId)
+            collectionRef.set(item)
+            Toast.makeText(context, "Successfully registered!", Toast.LENGTH_SHORT).show()
+        }
+
+        builder.setNegativeButton("No") { dialog, which ->
+            // do nothing
+        }
+
+        ++SellerRegistrationFragment.sellerID
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //to show the image on the screen
+        if (requestCode == REQUEST_CODE_PICK_FILE && resultCode == RESULT_OK && data != null) {
+            selectedFileUri = data.data
+        }
     }
 }

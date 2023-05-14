@@ -66,9 +66,6 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun register() {
-    }
-
     private fun switchForm() {
         val transaction = supportFragmentManager.beginTransaction()
 
