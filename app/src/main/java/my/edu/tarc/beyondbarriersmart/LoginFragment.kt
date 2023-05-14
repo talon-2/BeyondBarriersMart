@@ -55,6 +55,11 @@ class LoginFragment : Fragment() {
         }
 
         create_new_account_clickable_text.setOnClickListener(){
+//            val intent = Intent(activity, RegisterActivity::class.java)
+//            startActivity(intent)
+
+            activity?.startActivity(Intent(activity, RegisterActivity::class.java))
+
         }
 
         return view
