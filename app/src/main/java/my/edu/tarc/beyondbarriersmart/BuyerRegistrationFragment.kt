@@ -226,7 +226,7 @@ class BuyerRegistrationFragment : Fragment() {
     private fun setupImg(): String {
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
-        val custId = String.format("S%04d", BuyerRegistrationFragment.custID)
+        val custId = String.format("C%04d", BuyerRegistrationFragment.custID)
         val imageRef = storageRef.child("$custId.image")
 
         val bitmap = (profileImageButton.drawable as BitmapDrawable).bitmap

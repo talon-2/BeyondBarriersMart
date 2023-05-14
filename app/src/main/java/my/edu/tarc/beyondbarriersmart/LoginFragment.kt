@@ -157,6 +157,10 @@ class LoginFragment : Fragment() {
 
                         editor?.apply()
 
+                        requireActivity().supportFragmentManager.beginTransaction()
+                            .replace(R.id.fragment_container, SellerProfileFragment())
+                            .commit()
+
                         //navigate where the seller should go
                     }
                 }

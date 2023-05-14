@@ -36,6 +36,8 @@ class EditCustomerAddressFragment : DialogFragment() {
                     address to addressInput!!.text.toString()
                 )
 
+                ref.update(updates)
+
                 val editor = sharedPref.edit()
                 editor!!.putString(LoginFragment.address, addressInput!!.text.toString())
                 editor!!.apply()

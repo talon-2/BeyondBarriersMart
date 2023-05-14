@@ -97,6 +97,8 @@ class EditCustomerInfoFragment : DialogFragment() {
                     dateOfBirth to dateOfBirthInput!!.text.toString()
                 )
 
+                ref.update(updates)
+
                 val editor = sharedPref.edit()
                 editor!!.putString(LoginFragment.username, usernameInput!!.text.toString())
                 editor!!.putString(LoginFragment.email, emailInput!!.text.toString())
