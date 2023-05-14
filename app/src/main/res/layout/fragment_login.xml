@@ -117,38 +117,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/forgot_password_clickable_text"
+            app:layout_constraintTop_toBottomOf="@+id/create_account_clickable_text"
             app:layout_constraintWidth_percent="0.5" />
-
-        <CheckBox
-            android:id="@+id/remember_me_checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/remember_me"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/forgot_password_clickable_text"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_password_edit" />
-
-        <TextView
-            android:id="@+id/forgot_password_clickable_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:minWidth="48dp"
-            android:minHeight="48dp"
-            android:text="@string/forgot_password"
-            android:textAlignment="center"
-            android:textAppearance="@style/clickable_text"
-            app:flow_horizontalAlign="center"
-            app:flow_verticalAlign="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/remember_me_checkbox"
-            app:layout_constraintTop_toBottomOf="@+id/login_password_edit" />
 
         <TextView
             android:id="@+id/dont_have_account_text"
@@ -162,7 +132,7 @@
             app:layout_constraintEnd_toStartOf="@+id/create_account_clickable_text"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_button" />
+            app:layout_constraintTop_toBottomOf="@+id/login_password_edit" />
 
         <TextView
             android:id="@+id/create_account_clickable_text"
@@ -179,7 +149,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/dont_have_account_text"
-            app:layout_constraintTop_toBottomOf="@+id/login_button" />
+            app:layout_constraintTop_toBottomOf="@+id/login_password_edit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
