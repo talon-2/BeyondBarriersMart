@@ -92,6 +92,10 @@ class SpendingChartActivity : AppCompatActivity() {
         //load the barChart as a co-routine.
         getChartData()
 
+        val bottomNavigationFragment = BottomNavFragment()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.spending_chart_fragment_container, bottomNavigationFragment)
+            .commit()
 
         refreshButton.setOnClickListener(){
             //refresh the current activity.
@@ -99,10 +103,7 @@ class SpendingChartActivity : AppCompatActivity() {
             startActivity(getIntent())
         }
 
-        val bottomNavigationFragment = BottomNavFragment()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.spending_chart_fragment_container, bottomNavigationFragment)
-            .commit()
+
     }
 
     private fun getChartData() {

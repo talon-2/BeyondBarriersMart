@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sellerProfileIcon"
+        android:title="Profile"
+        android:icon="@drawable/baseline_person_24"/>
+    <item
+        android:id="@+id/sellerProductIcon"
+        android:title="Products"
+        android:icon="@drawable/baseline_card_product_24"/>
+    <item
+        android:id="@+id/sellerLogoutIcon"
+        android:title="Logout"
+        android:icon="@drawable/baseline_logout_24"/>
+
+    <!--Invisible item in case none of the icons are selected.-->
+    <item
+        android:id="@+id/sellerInvisibleIcon"
+        android:visible="false"
+        android:title="Logout"
+        android:icon="@drawable/baseline_logout_24"/>
+</menu>
