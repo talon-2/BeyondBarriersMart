@@ -1,9 +1,11 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -14,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -52,7 +55,11 @@ class LoginFragment : Fragment() {
         }
 
         create_new_account_clickable_text.setOnClickListener(){
+//            val intent = Intent(activity, RegisterActivity::class.java)
+//            startActivity(intent)
+
             activity?.startActivity(Intent(activity, RegisterActivity::class.java))
+
         }
 
         return view
@@ -76,6 +83,7 @@ class LoginFragment : Fragment() {
         return true
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun validateLogin() {
         val fetchUsername = username_input.text.toString()
         val fetchPassword = password_input.text.toString()
@@ -145,4 +153,5 @@ class LoginFragment : Fragment() {
     private fun createAccount() {
 
     }
+
 }

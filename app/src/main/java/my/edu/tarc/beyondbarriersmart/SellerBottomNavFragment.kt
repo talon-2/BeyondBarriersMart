@@ -9,55 +9,46 @@ import android.view.View
 import android.view.ViewGroup
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class BottomNavFragment : Fragment() {
+class SellerBottomNavFragment : Fragment() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_bottom_nav, container, false)
+        return inflater.inflate(R.layout.fragment_seller_bottom_nav, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
+        val bottomNavigationView = requireActivity().findViewById<BottomNavigationView>(R.id.seller_bottom_navigation_view)
 
         //make everything unchecked, we do this by adding an invisible element to be checked.
-        bottomNavigationView.menu.findItem(R.id.homeIcon).isChecked = false
-        bottomNavigationView.menu.findItem(R.id.profileIcon).isChecked = false
-        bottomNavigationView.menu.findItem(R.id.cartIcon).isChecked = false
-        bottomNavigationView.menu.findItem(R.id.logoutIcon).isChecked = false
-        bottomNavigationView.menu.findItem(R.id.invisibleIcon).isChecked = true
+        bottomNavigationView.menu.findItem(R.id.sellerProductIcon).isChecked = false
+        bottomNavigationView.menu.findItem(R.id.sellerProfileIcon).isChecked = false
+        bottomNavigationView.menu.findItem(R.id.sellerLogoutIcon).isChecked = false
+        bottomNavigationView.menu.findItem(R.id.sellerInvisibleIcon).isChecked = true
 
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
-                R.id.homeIcon -> {
-                    //if you need to display a fragment
-                    val homeFragment = CartFragment()
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, homeFragment)
+                R.id.sellerProfileIcon -> {
                     true
                 }
 
-                R.id.profileIcon -> {
+                R.id.sellerProductIcon -> {
                     //if you want to display an activity
                     //note that you have to recopy this entire function in your .kt, since it is a seperate activity.
-                    val intent = Intent(activity, SpendingChartActivity::class.java)
+                    val intent = Intent(activity, MyProductsActivity::class.java)
                     startActivity(intent)
                     true
                 }
 
-                R.id.cartIcon -> {
-                    val cartFragment = CartFragment()
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, cartFragment)
-                    true
-                }
-
-                R.id.logoutIcon -> {
+                R.id.sellerLogoutIcon -> {
                     //pop up
                     val builder = AlertDialog.Builder(context)
                     builder.setTitle("Warning")

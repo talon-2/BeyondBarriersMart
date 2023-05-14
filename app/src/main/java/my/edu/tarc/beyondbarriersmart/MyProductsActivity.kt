@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import my.edu.tarc.beyondbarriersmart.databinding.ActivityMyProductsBinding
@@ -40,10 +41,13 @@ class MyProductsActivity : AppCompatActivity() {
             adapter = SellerProductCardAdapter(productList)
         }
 
-        val bottomNavigationFragment = BottomNavFragment()
+        val bottomNavigationFragment = SellerBottomNavFragment()
         supportFragmentManager.beginTransaction()
             .add(R.id.my_products_fragment_container, bottomNavigationFragment)
             .commit()
+
+//        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.seller_bottom_navigation_view)
+//        bottomNavigationView.menu.findItem(R.id.sellerProductIcon).isChecked = true
 
         addButton.setOnClickListener(){
             val intent = Intent(this, AddProductsActivity::class.java)

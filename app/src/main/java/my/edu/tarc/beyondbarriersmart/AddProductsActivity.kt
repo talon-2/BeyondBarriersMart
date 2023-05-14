@@ -10,7 +10,7 @@ class AddProductsActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction().apply {
             add(R.id.fragment_container, AddProductsFragment())
-            add(R.id.fragment_container, BottomNavFragment())
+            add(R.id.fragment_container, SellerBottomNavFragment())
             commit()
         }
     }

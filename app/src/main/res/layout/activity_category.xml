@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_rowWeight="1"
     android:layout_columnWeight="1"
-    tools:context=".CategoryFragment">
+    tools:context=".CategoryActivity">
 
     <TextView
         android:id="@+id/CatePageTitleText"
@@ -225,156 +225,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cateFilterSpinner">
 
-        <GridLayout
-            android:id="@+id/productGridLayout"
+        <GridView
+            android:id="@+id/productGridView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alignmentMode="alignBounds"
-            android:padding="4dp"
-            android:columnCount="3"
-            android:columnOrderPreserved="true"
-            android:useDefaultMargins="true"
-            tools:ignore="UselessParent">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/item1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:layout_columnWeight="1"
-                android:elevation="60dp"
-                app:cardCornerRadius="12dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:id="@+id/imageItem1"
-                        android:layout_width="60dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center"
-                        android:clickable="true"
-                        android:contentDescription="TODO"
-                        android:focusable="true"
-                        android:src="@drawable/baseline_broken_image_24" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/category_item_name"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/category_item_price"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/item2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp"
-                android:elevation="60dp"
-                app:cardCornerRadius="12dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center"
-                        android:clickable="true"
-                        android:contentDescription="TODO"
-                        android:focusable="true"
-                        android:src="@drawable/baseline_broken_image_24">
-
-                    </ImageView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/category_item_name"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/category_item_price"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/item3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:layout_margin="12dp"
-                android:elevation="60dp"
-                app:cardCornerRadius="12dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center"
-                        android:clickable="true"
-                        android:contentDescription="TODO"
-                        android:focusable="true"
-                        android:src="@drawable/baseline_broken_image_24">
-
-                    </ImageView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/category_item_name"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/category_item_price"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </GridLayout>
+            android:horizontalSpacing="4dp"
+            android:verticalSpacing="4dp"
+            android:numColumns="3"/>
 
     </ScrollView>
 
