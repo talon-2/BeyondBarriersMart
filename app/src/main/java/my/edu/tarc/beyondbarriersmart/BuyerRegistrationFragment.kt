@@ -59,27 +59,37 @@ class BuyerRegistrationFragment : Fragment() {
         val phoneNumber: EditText? = view?.findViewById(R.id.buyer_phone_number_input)
         val dateOfBirth: EditText? = view?.findViewById(R.id.buyer_date_of_birth_input)
 
-        if (username?.text.toString()?.length == 0) {
-            username?.error = getString(R.string.empty_username)
+        if (username!!.text.toString().isEmpty()) {
+            username!!.error = getString(R.string.empty_username)
             result = false
         }
 
-        if (email?.text.toString()?.length == 0) {
-            email?.error = getString(R.string.empty_email)
+        if (email!!.text.toString().isEmpty()) {
+            email!!.error = getString(R.string.empty_email)
             result = false
         }
-        else if (!Patterns.EMAIL_ADDRESS.matcher(email?.text.toString()).matches()) {
-            email?.error = getString(R.string.invalid_email)
+        else if (!Patterns.EMAIL_ADDRESS.matcher(email!!.text.toString()).matches()) {
+            email!!.error = getString(R.string.invalid_email)
             result = false
         }
 
-        if (password?.text.toString()?.length == 0) {
-            password?.error = getString(R.string.empty_password)
+        if (password!!.text.toString().isEmpty()) {
+            password!!.error = getString(R.string.empty_password)
             result = false
         }
-        else if (password?.text.toString() != passwordRetype?.text.toString()) {
-            password?.error = getString(R.string.not_same_password)
+        else if (password!!.text.toString() != passwordRetype!!.text.toString()) {
+            password!!.error = getString(R.string.not_same_password)
             passwordRetype?.error = getString(R.string.not_same_password)
+            result = false
+        }
+
+        val phoneRegex = Regex("^\\+?(60|0)(1[0-9]{8}|2[1-9]{1}[0-9]{7})$")
+        if (!phoneRegex.matches(phoneNumber!!.text.toString())) {
+            phoneNumber.error = getString(R.string.invalid_phone_number)
+            result = false
+        }
+        else if (phoneNumber!!.text.toString().isEmpty()) {
+            phoneNumber.error = getString(R.string.empty_phone_number)
             result = false
         }
 
@@ -87,6 +97,10 @@ class BuyerRegistrationFragment : Fragment() {
         val isInvalidYear = currYear - 18 <= dateOfBirth!!.text.toString()!!.split("/").last().toInt()
         if (isInvalidYear) {
             dateOfBirth!!.error = getString(R.string.underage)
+            result = false
+        }
+        else if (dateOfBirth!!.text.toString().isEmpty()) {
+            dateOfBirth!!.error = getString(R.string.empty_date)
             result = false
         }
 
