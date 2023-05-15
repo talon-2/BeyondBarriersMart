@@ -92,8 +92,8 @@ class ProductActivity : AppCompatActivity() {
             override fun onClick(v: View?) {
                 addDataToCartInDatabase()
 
-                //val intent = Intent(this@ProductActivity, CategoryActivity::class.java)
-                //startActivity(intent)
+                val intent = Intent(this@ProductActivity, CategoryActivity::class.java)
+                startActivity(intent)
                 //Toast.makeText(this@ProductActivity, "addtoCart btn clicked ", Toast.LENGTH_SHORT).show()
             }
         })
@@ -190,13 +190,14 @@ class ProductActivity : AppCompatActivity() {
         }
     }
 
+
     @SuppressLint("SuspiciousIndentation")
     private fun addDataToCartInDatabase(){
 
         val cartRef = db.collection("Cart")
 
         val custId = currentCustomerId
-        val itemAmt = quantityNumber.text
+        val itemAmt = quantityNumber.text.toString().toInt()
         val prodId = currentProduct
 
         val cartRecord = hashMapOf(
@@ -204,7 +205,8 @@ class ProductActivity : AppCompatActivity() {
             "itemAmt" to itemAmt,
             "productId" to prodId
         )
-        cartRef.document().set(cartRecord)
+        cartRef.document()
+            .set(cartRecord)
             .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
 
