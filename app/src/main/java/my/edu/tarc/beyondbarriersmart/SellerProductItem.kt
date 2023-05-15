@@ -13,11 +13,12 @@ class SellerProductItem (
     var sold: Int,
     var rating: Float,
     var cost: Float,
-    var shipNeed: Boolean
+    var shipNeed: Boolean,
+    var isDelisted: Boolean
 ){
     private var isEmpty = false
 
-    constructor() : this("", "", "", "", "", "", 0, 0, 0f, 0f, false) {
+    constructor() : this("", "", "", "", "", "", 0, 0, 0f, 0f, false, false) {
         isEmpty = true
     }
 

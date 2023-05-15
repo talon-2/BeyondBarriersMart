@@ -90,10 +90,13 @@ class MyProductsActivity : AppCompatActivity() {
                             "${data?.get("sold")}".toInt(),
                             "${data?.get("rating")}".toFloat(),
                             "${data?.get("cost")}".toFloat(),
-                            "${data?.get("shipNeed")}".toBoolean()
+                            "${data?.get("shipNeed")}".toBoolean(),
+                            "${data?.get("isDelisted")}".toBoolean()
                         )
-                        productList.add(item)
-                        tempProductList.add(item)
+                        if(!item.isDelisted){
+                            productList.add(item)
+                            tempProductList.add(item)
+                        }
                     }
 
                         val adapter = SellerProductCardAdapter(productList)
