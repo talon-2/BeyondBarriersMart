@@ -12,12 +12,13 @@ import android.widget.GridView
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import my.edu.tarc.beyondbarriersmart.databinding.ActivityCategoryBinding
 
-class CategoryActivity : AppCompatActivity() {
+class CategoryActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityCategoryBinding
     val db  = Firebase.firestore
@@ -57,128 +58,124 @@ class CategoryActivity : AppCompatActivity() {
 
         filterSelection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                when(position){
+                parent: AdapterView<*>?, view: View?, position: Int, id: Long
+            ) {
+                when (position) {
                     //0 ->
                     //1 ->
-                    2 ->{
+                    2 -> {
                         sortAscend = true
                         sortDescend = false
-                        //getDataFromDatabase(currentChosenCate)
+                        getDataFromDatabase(currentChosenCate, 1)
                     }
-                    3 ->{
-                         sortAscend = true
+                    3 -> {
+                        sortAscend = true
                         sortDescend = false
-                        //getDataFromDatabase(currentChosenCate)
+                        getDataFromDatabase(currentChosenCate, 2)
                     }
                 }
             }
+
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
 
-        fashionBtn.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
+        fashionBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
                 choseCate = true
                 currentChosenCate = "Fashion"
-                getDataFromDatabase(currentChosenCate)
+                getDataFromDatabase(currentChosenCate, 0)
             }
         })
-        sportBtn.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
+        sportBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
                 choseCate = true
                 currentChosenCate = "Sports"
-                getDataFromDatabase(currentChosenCate)
+                getDataFromDatabase(currentChosenCate, 0)
             }
         })
-        dailyBtn.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
+        dailyBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
                 choseCate = true
                 currentChosenCate = "Daily"
-                getDataFromDatabase(currentChosenCate)
+                getDataFromDatabase(currentChosenCate, 0)
             }
         })
-        electronicBtn.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
+        electronicBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
                 choseCate = true
                 currentChosenCate = "Electronics"
-                getDataFromDatabase(currentChosenCate)
+                getDataFromDatabase(currentChosenCate, 0)
             }
         })
-        entertainmentBtn.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
+        entertainmentBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
                 choseCate = true
                 currentChosenCate = "Entertainment"
-                getDataFromDatabase(currentChosenCate)
+                getDataFromDatabase(currentChosenCate, 0)
             }
         })
-        foodBtn.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
+        foodBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
                 choseCate = true
                 currentChosenCate = "Food"
-                getDataFromDatabase(currentChosenCate)
+                getDataFromDatabase(currentChosenCate, 0)
             }
         })
-        bookBtn.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
+        bookBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
                 choseCate = true
                 currentChosenCate = "Books"
-                getDataFromDatabase(currentChosenCate)
+                getDataFromDatabase(currentChosenCate, 0)
             }
         })
-        decorationBtn.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View?){
+        decorationBtn.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
                 choseCate = true
                 currentChosenCate = "Decorative"
-                getDataFromDatabase(currentChosenCate)
+                getDataFromDatabase(currentChosenCate, 0)
             }
         })
 
-        getDataFromDatabase(currentChosenCate)
-
-        //intent.putExtra("data_key", data)
-
-        gridView.onItemClickListener = AdapterView.OnItemClickListener{parent, view,position,id->
-            val clickedCard = cards[position]
-
-            Log.d(TAG, "aaaaaaaaaaaaaaaaaaa")
-
-            val intent = Intent(this, ProductActivity::class.java)
-            intent.putExtra("cardName", clickedCard.name)
-
-            startActivity(intent)
+        if(!choseCate){
+            getDataFromDatabase(currentChosenCate, 0)
         }
-
 
     }
 
     @SuppressLint("SuspiciousIndentation")
-    private fun getDataFromDatabase(currentCate: String){
+    private fun getDataFromDatabase(currentCate: String, sorting: Int){
         val categoryReference = FirebaseFirestore.getInstance().collection("SellerProductItem")
             cards.clear()
         val query = categoryReference.whereEqualTo("category", currentCate)
 
         query.get().addOnSuccessListener { documents ->
-            for (document in documents){
-                val data = document.data
-
-                var currentImage = "${data?.get("image")}"
-                var currentName =  "${data?.get("name")}"
-                val price = data?.get("cost") as Double
-                val currentPrice = String.format("RM%,.2f", price)
-
-                var card = Card(currentImage, currentName, currentPrice)
-
-                cards.add(card)
-
-                if(sortAscend){
-                    cards.sortBy { card.price }
-                }else if(sortDescend){
-                    cards.sortByDescending { card.price }
+            documents?.let{
+                var sortedDocuments = it.documents.toList()
+                if(sorting == 1){
+                     sortedDocuments = it.sortedBy{it["cost"] as Double}
+                }else if(sorting == 2){
+                    sortedDocuments = it.sortedByDescending { it["cost"] as Double }
                 }
+
+
+                for (document in sortedDocuments){
+                    val data = document.data
+
+                    var currentImage = "${data?.get("image")}"
+                    var currentName =  "${data?.get("name")}"
+                    val tempPrice = data?.get("cost") as Double
+                    val currentPrice = String.format("RM%,.2f", tempPrice)
+                    val currentId = "${data?.get("productId")}"
+
+                    var card = Card(currentImage, currentName, currentPrice, currentCate, currentId)
+
+                    cards.add(card)
+                }
+
+                val cardAdapter = CardAdapter(this@CategoryActivity, cards)
+                gridView.adapter = cardAdapter
             }
-            val cardAdapter = CardAdapter(this@CategoryActivity, cards)
-            gridView.adapter = cardAdapter
         }
     }
 

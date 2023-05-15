@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cateProductCardView"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:clickable="false">
+    android:background="#00FFFFFF"
+    android:backgroundTint="#00FFFFFF"
+    android:clickable="false"
+    app:cardBackgroundColor="#00FFFFFF">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="176dp"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
         android:layout_margin="8dp"
-        android:clickable="true">
+        android:clickable="false">
 
         <ImageView
             android:id="@+id/productCardImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:clickable="true"
+            android:clickable="false"
             android:src="@drawable/baseline_broken_image_24" />
 
         <TextView
@@ -28,7 +32,7 @@
             android:layout_below="@+id/productCardImage"
             android:layout_centerInParent="true"
             android:layout_marginTop="2dp"
-            android:clickable="true"
+            android:clickable="false"
             android:text="@string/category_item_name"
             android:textAlignment="center"
             android:textSize="16sp" />
@@ -39,10 +43,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/productCardName"
             android:layout_centerHorizontal="true"
-            android:clickable="true"
+            android:clickable="false"
             android:text="@string/category_item_price"
             android:textAlignment="center"
             android:textSize="16sp" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
