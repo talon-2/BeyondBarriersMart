@@ -77,6 +77,13 @@ class CheckoutFragment : Fragment() {
             }
         }
 
+        binding.checkoutBackButton.setOnClickListener(){
+            //go back to cart
+            val intent = Intent(activity, CartActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
+
         binding.checkoutProceedButton.setOnClickListener() {
             cartRef.get().addOnCompleteListener { task ->
                 //get everything from your cart
@@ -147,7 +154,7 @@ class CheckoutFragment : Fragment() {
                             }
                     }
                 }
-                //head back to cart
+                //head back to category
                 val intent = Intent(activity, CategoryActivity::class.java)
                 startActivity(intent)
                 activity?.finish()
