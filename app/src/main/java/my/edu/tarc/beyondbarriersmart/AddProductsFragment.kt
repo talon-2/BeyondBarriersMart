@@ -189,11 +189,13 @@ class AddProductsFragment : Fragment() {
                 0f,
                 productPrice,
                 shipNeeds,
+                false
             )
 
             val collectionRef = db.collection("SellerProductItem").document(productId)
             collectionRef.set(item)
             Toast.makeText(context, "Record Successfully added!", Toast.LENGTH_SHORT).show()
+
 
             //requireActivity().supportFragmentManager.beginTransaction().remove(this@AddProductsFragment).commit()
             requireActivity().onBackPressed()

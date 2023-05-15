@@ -52,14 +52,14 @@ class SellerProductCardViewHolder (
         delistButton.setOnClickListener {
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Confirmation")
-            builder.setMessage("Are you sure you want to delete this item?")
+            builder.setMessage("Are you sure you want to delist this item? You cannot reList this back.")
 
             builder.setPositiveButton("Yes") { dialog, which ->
                 // Get the product ID from the tag of the delete button
                 val productId = it.tag as String
 
                 // Call the deleteProduct method with the product ID
-                deleteProduct(productId)
+                delistProduct(productId)
             }
 
             builder.setNegativeButton("No") { dialog, which ->
@@ -72,33 +72,47 @@ class SellerProductCardViewHolder (
 
         }
     }
-    private fun deleteProduct(productId: String) {
-        //firebase storage
-        val storage = FirebaseStorage.getInstance()
-        val storageRef = storage.reference
+    private fun delistProduct(productId: String) {
 
-        //firestore
+        //get db
         val db = Firebase.firestore
 
-        //Delete record (from firebase Storage first)
-        val productToBeDeleted = storageRef.child(productId.substring(4) + ".jpg")
-        productToBeDeleted.delete()
-            .addOnSuccessListener {
-                Log.d(TAG, "Product image with ID $productId deleted from Firebase Storage")
-            }
-            .addOnFailureListener { e ->
-                Log.w(TAG, "Error deleting product image with ID $productId from Firebase Storage", e)
-            }
-
-        //Delete record (from firestore)
+        //get the product's isDelisted Attribute
         db.collection("SellerProductItem").document(productId)
-            .delete()
+            .update("isDelisted", true)
             .addOnSuccessListener {
-                Log.d(TAG, "Product info with ID $productId deleted from Firestore")
-                Toast.makeText(context, "Record Successfully Deleted!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Record Successfully deListed!", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error deleting product with ID $productId from Firestore", e)
             }
+
+//        //firebase storage
+//        val storage = FirebaseStorage.getInstance()
+//        val storageRef = storage.reference
+//
+//        //firestore
+//        val db = Firebase.firestore
+//
+//        //Delete record (from firebase Storage first)
+//        val productToBeDeleted = storageRef.child(productId.substring(4) + ".jpg")
+//        productToBeDeleted.delete()
+//            .addOnSuccessListener {
+//                Log.d(TAG, "Product image with ID $productId deleted from Firebase Storage")
+//            }
+//            .addOnFailureListener { e ->
+//                Log.w(TAG, "Error deleting product image with ID $productId from Firebase Storage", e)
+//            }
+//
+//        //Delete record (from firestore)
+//        db.collection("SellerProductItem").document(productId)
+//            .delete()
+//            .addOnSuccessListener {
+//                Log.d(TAG, "Product info with ID $productId deleted from Firestore")
+//                Toast.makeText(context, "Record Successfully Deleted!", Toast.LENGTH_SHORT).show()
+//            }
+//            .addOnFailureListener { e ->
+//                Log.w(TAG, "Error deleting product with ID $productId from Firestore", e)
+//            }
     }
 }

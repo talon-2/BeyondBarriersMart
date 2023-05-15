@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val testFragment = LoginFragment()
+        val testFragment = CartFragment()
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, testFragment)
@@ -31,7 +31,11 @@ class MainActivity : AppCompatActivity() {
 
         //starting a activity (to be placed in an if else statement.)
         //some Activities can only be seen if you run it instead of looking it from the Design preview.
-//        startActivity(Intent(this,CategoryActivity::class.java))
+
+        //startActivity(Intent(this,MyProductsActivity::class.java))
+
+        //startActivity(Intent(this,CategoryActivity::class.java))
+
 //        finish()
     }
 }
