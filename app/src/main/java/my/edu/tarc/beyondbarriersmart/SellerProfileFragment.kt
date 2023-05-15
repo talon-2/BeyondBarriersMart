@@ -2,6 +2,7 @@ package my.edu.tarc.beyondbarriersmart
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -39,6 +40,7 @@ class SellerProfileFragment : Fragment(), DialogInterface.OnDismissListener {
         ordersReceivedList = view.findViewById(R.id.orders_received_list)
 
         viewProductsButton.setOnClickListener {
+            startActivity(Intent(this.requireActivity(), MyProductsActivity::class.java))
         }
 
         editProfileButton.setOnClickListener {
@@ -68,7 +70,7 @@ class SellerProfileFragment : Fragment(), DialogInterface.OnDismissListener {
         emailText.setText(sharedPref.getString(LoginFragment.email, getString(R.string.email_sample)))
     }
 
-    private fun readOrders() {
+    public fun readOrders() {
         val sharedPref = requireContext().getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
         val sellerId = sharedPref.getString(LoginFragment.sellerId, "")
 
@@ -78,23 +80,33 @@ class SellerProfileFragment : Fragment(), DialogInterface.OnDismissListener {
 
         productQuery.get().addOnSuccessListener { prodSnapshot ->
             if (!prodSnapshot.isEmpty) {
-                prodSnapshot.documents.forEachIndexed { index, productDocument ->
+                prodSnapshot.documents.forEachIndexed { _, productDocument ->
                     val purchaseQuery = FirebaseFirestore.getInstance()
                         .collection("Purchase")
                         .whereEqualTo("productId", productDocument.get("productId").toString())
 
                     purchaseQuery.get().addOnSuccessListener { purchaseSnapshot ->
                         if (!purchaseSnapshot.isEmpty) {
-                            purchaseSnapshot.documents.forEachIndexed { index2, purchaseDocument ->
+                            purchaseSnapshot.documents.forEachIndexed { index, purchaseDocument ->
+                                val purchaseId = purchaseDocument.get("purchaseId").toString()
                                 val image = productDocument.get("image").toString()
                                 val itemName = productDocument.get("name").toString()
                                 val amount = purchaseDocument.get("purchaseAmt").toString()
                                 val dateOrdered = purchaseDocument.get("date").toString()
                                 val isDone = purchaseDocument.get("isDone").toString().toBoolean()
 
-                                ordersList[index2] = OrderReceive(image, itemName, amount, dateOrdered, isDone)
+                                val customerQuery = FirebaseFirestore.getInstance()
+                                    .collection("Customer")
+                                    .whereEqualTo("custId", purchaseDocument.get("custId").toString())
+
+                                customerQuery.get().addOnSuccessListener { customerSnapshot ->
+                                    if (!customerSnapshot.isEmpty) {
+                                        val address = customerSnapshot.documents[0].get("address").toString()
+                                        ordersList[index] = OrderReceive(purchaseId, image, itemName, address, amount, dateOrdered, isDone)
+                                    }
+                                    displayOrders()
+                                }
                             }
-                            displayOrders()
                         }
                     }
                 }
@@ -102,15 +114,24 @@ class SellerProfileFragment : Fragment(), DialogInterface.OnDismissListener {
         }
     }
 
-    public fun displayOrders() {
+    private fun displayOrders() {
         // it doesnt work when using supportFragmentManager
         // theres probably a reason, but as long as it works
-        val transaction = childFragmentManager.beginTransaction()
+        val fragmentManager = childFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+
+        for (fragment in fragmentManager.fragments) {
+            transaction.remove(fragment)
+            Log.d("Fragment remove", "It has been removed")
+        }
+
         ordersList.filter({ item -> !item.isDone}).forEachIndexed { index, order ->
             val bundle = Bundle()
 
+            bundle.putString("purchaseId", order.purchaseId)
             bundle.putString("image", order.image)
             bundle.putString("name", order.itemName)
+            bundle.putString("address", order.address)
             bundle.putString("purchaseAmt", order.purchaseAmt.toString())
             bundle.putString("date", order.date.toString())
             bundle.putBoolean("isDone", order.isDone)
@@ -118,6 +139,7 @@ class SellerProfileFragment : Fragment(), DialogInterface.OnDismissListener {
             val orderItem = SellerOrderItem()
             orderItem.arguments = bundle
             transaction.add(R.id.orders_received_list, orderItem)
+            Log.d("Fragment add", "It has been added")
         }
         transaction.commit()
     }

@@ -1,5 +1,6 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.content.Context
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -21,6 +23,7 @@ class SellerOrderItem : Fragment() {
     private lateinit var itemName: TextView
     private lateinit var amount: TextView
     private lateinit var dateOrdered: TextView
+    private lateinit var address: TextView
     private lateinit var markAsDoneButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,10 +41,12 @@ class SellerOrderItem : Fragment() {
         itemName = view.findViewById(R.id.order_item_name)
         amount = view.findViewById(R.id.order_amount)
         dateOrdered = view.findViewById(R.id.seller_order_item_date)
+        address = view.findViewById(R.id.order_received_address)
         markAsDoneButton = view.findViewById(R.id.mark_as_done_button)
 
         itemName.setText(arguments?.getString("name").toString())
         amount.setText(arguments?.getString("purchaseAmt").toString())
+        address!!.setText(arguments?.getString("address").toString())
         dateOrdered!!.setText(arguments?.getString("date").toString())
 
         val storage = FirebaseStorage.getInstance()
@@ -55,7 +60,21 @@ class SellerOrderItem : Fragment() {
             imageView.setImageBitmap(bitmap)
         }
         markAsDoneButton.setOnClickListener {
-            (parentFragment as SellerProfileFragment).displayOrders()
+            val sharedPref = requireContext().getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
+
+            val productQuery = FirebaseFirestore.getInstance()
+                .collection("Purchase")
+                .whereEqualTo("purchaseId", arguments?.getString("purchaseId").toString())
+
+            productQuery.get().addOnSuccessListener { productSnapshot ->
+                if (!productSnapshot.isEmpty) {
+                    productSnapshot.documents.forEachIndexed { index, document ->
+                        document.reference.update("isDone", true)
+                    }
+                }
+            }
+
+            (parentFragment as SellerProfileFragment).readOrders()
         }
 
         return view
