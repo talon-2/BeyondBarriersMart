@@ -250,5 +250,8 @@
     <string name="cart_remove_text">Remove</string>
     <string name="cart_item_name">Item Name 1</string>
     <string name="cart_item_price">RMX.XX</string>
+    <string name="orderItemName">Item Name 1</string>
+    <string name="orderItemQty">n</string>
+    <string name="orderItemPrice">XX.XX</string>
 
 </resources>

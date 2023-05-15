@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModel
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -25,17 +27,6 @@ class CartFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-
-
-
         var cartList = mutableListOf<Cart>()
         FirebaseFirestore.getInstance().collection("Cart").
         whereEqualTo("customerId", "C0001").get().addOnSuccessListener {carts->
@@ -46,37 +37,46 @@ class CartFragment : Fragment() {
             }
 
             adapter.initialiseAdapter(cartList)
-            adapter.notifyDataSetChanged()
-            //adapter.initialiseAdapter(cartList)
-            binding.cartItemList.adapter = adapter
+
+
         }.addOnFailureListener{
             Log.d("ERROR",it.message.toString())
         }
+        var layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
+
+        binding.cartItemList.layoutManager = layoutManager
+        adapter.setContext(requireContext())
+        //adapter.initialiseAdapter(cartList)
+        adapter.setBinding(binding)
+
+        binding.cartItemList.adapter = adapter
+
+        binding.clearCartButton.setOnClickListener(){
+            FirebaseFirestore.getInstance().collection("Cart").
+            whereEqualTo("customerId", "C0001").get().addOnSuccessListener {
+                cartList.clear()
+                for (cart in it){
+                    adapter.initialiseAdapter(cartList)
+
+                    FirebaseFirestore.getInstance().collection("Cart").
+                    document(cart.id).delete()
+                }
+            }
+        }
+
+        binding.cartItemNumber.text = String.format("Items in Cart: ") + adapter.itemCount.toString()
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
+
+    fun changeItemCount(){
 
     }
 
 
-
-    /*data class Cart(
-        val customerId: String,
-        val itemAmt: Int,
-        val productId: String
-    )*/
-    /*fun retrieveCart(){
-        val cartRef = Firebase.database.reference.child("Cart")
-        cartRef.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val cartItems = mutableListOf<Cart>()
-                for (itemSnapshot in snapshot.children) {
-                    val cartItem = itemSnapshot.getValue(Cart::class.java)
-                    cartItems.add(cartItem)
-                }
-                // Display the cart items in the UI
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Handle the error
-            }
-        })
-    }*/
 }

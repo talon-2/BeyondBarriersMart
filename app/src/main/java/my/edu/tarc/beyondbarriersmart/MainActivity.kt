@@ -18,11 +18,13 @@ class MainActivity : AppCompatActivity() {
     val db = Firebase.firestore
     private lateinit var bottomNavigationView: BottomNavigationView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val testFragment = LoginFragment()
+        val testFragment = CheckoutFragment()
+
 //        val bottomNavigationFragment = BottomNavFragment()
 
         supportFragmentManager.beginTransaction()
