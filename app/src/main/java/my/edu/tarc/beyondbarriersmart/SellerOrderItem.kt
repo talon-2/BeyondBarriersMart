@@ -74,7 +74,7 @@ class SellerOrderItem : Fragment() {
                 }
             }
 
-            (parentFragment as SellerProfileFragment).readOrders()
+            (parentFragment as SellerProfileActivity).readOrders()
         }
 
         return view
