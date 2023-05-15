@@ -245,5 +245,10 @@
     <string name="empty_card">Please enter your card number</string>
     <string name="invalid_card_no">Please enter a valid card number</string>
     <string name="empty_address">Please enter an address</string>
+    <string name="cart_amt">Amount: X</string>
+    <string name="cart_add_text">Add</string>
+    <string name="cart_remove_text">Remove</string>
+    <string name="cart_item_name">Item Name 1</string>
+    <string name="cart_item_price">RMX.XX</string>
 
 </resources>

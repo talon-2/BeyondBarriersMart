@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cartCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:clickable="false"
+    app:cardBackgroundColor="#DADADADA"
+    app:cardCornerRadius="30dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="201dp"
+        android:layout_margin="8dp"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/cartCardImage"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:clickable="true"
+            android:src="@drawable/baseline_broken_image_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cartCardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:text="@string/cart_item_name"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/cartCardPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toEndOf="@+id/cartCardImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cartCardPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="@string/cart_item_price"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/cartCardAmt"
+            app:layout_constraintStart_toEndOf="@+id/cartCardImage"
+            app:layout_constraintStart_toStartOf="@+id/cartCardName"
+            app:layout_constraintTop_toBottomOf="@+id/cartCardName" />
+
+        <TextView
+            android:id="@+id/cartCardAmt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:text="@string/cart_amt"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/cartCardPrice"
+            app:layout_constraintTop_toBottomOf="@+id/cartCardPrice" />
+
+        <Button
+            android:id="@+id/cartAddButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:text="@string/cart_add_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cartCardImage"
+            app:layout_constraintTop_toBottomOf="@+id/cartCardAmt" />
+
+        <Button
+            android:id="@+id/cartRemoveButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="42dp"
+            android:text="@string/cart_remove_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cartAddButton"
+            app:layout_constraintTop_toBottomOf="@+id/cartCardAmt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
