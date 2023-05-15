@@ -19,6 +19,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class SellerRegistrationFragment : Fragment() {
     private val REQUEST_CODE_PICK_FILE = 69
@@ -137,7 +138,7 @@ class SellerRegistrationFragment : Fragment() {
                 certImg
             )
 
-            val collectionRef = db.collection("Seller").document(sellerId)
+            val collectionRef = db.collection("Seller").document("S" + "${UUID.randomUUID().toString().substring(0, 4)}")
             collectionRef.set(item)
             Toast.makeText(context, "Successfully registered!", Toast.LENGTH_SHORT).show()
         }

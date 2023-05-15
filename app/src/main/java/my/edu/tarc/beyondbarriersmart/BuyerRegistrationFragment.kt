@@ -25,7 +25,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
-import java.util.Calendar
+import java.util.*
 
 class BuyerRegistrationFragment : Fragment() {
     companion object {
@@ -208,7 +208,7 @@ class BuyerRegistrationFragment : Fragment() {
                 profileImage
             )
 
-            val collectionRef = db.collection("Customer").document(custId)
+            val collectionRef = db.collection("Customer").document("C" + "${UUID.randomUUID().toString().substring(0, 4)}")
             collectionRef.set(item)
             Toast.makeText(context, "Successfully registered!", Toast.LENGTH_SHORT).show()
         }
