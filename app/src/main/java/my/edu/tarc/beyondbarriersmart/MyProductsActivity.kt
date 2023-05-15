@@ -1,11 +1,13 @@
 package my.edu.tarc.beyondbarriersmart
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -68,7 +70,8 @@ class MyProductsActivity : AppCompatActivity() {
         val tempProductList = mutableListOf<SellerProductItem>()
 
         //current seller data (TO BE UPDATED)
-        val currentSellerId = "S0001"
+        val sharedPref = getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
+        val currentSellerId = sharedPref.getString(LoginFragment.sellerId, "").toString()
 
         //initiate coroutine to read data
         noteRef.get().addOnCompleteListener { task ->

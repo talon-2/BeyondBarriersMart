@@ -2,6 +2,7 @@ package my.edu.tarc.beyondbarriersmart
 
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -161,9 +162,11 @@ class AddProductsFragment : Fragment() {
         if(!validatedInput()) return;
 
         val db = Firebase.firestore
+        val sharedPref = requireContext().getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
 
         val generatedString = setupImg()
         val productId = "PROD$generatedString"
+        val sellerId = sharedPref.getString(LoginFragment.sellerId, "").toString()
         val productImage = "$generatedString.image"
         val productName = productNameInput.text.toString()
         val productDescription = productDescriptionInput.text.toString()
@@ -179,7 +182,7 @@ class AddProductsFragment : Fragment() {
         builder.setPositiveButton("Yes") { dialog, which ->
             val item = SellerProductItem(
                 productId,
-                "S0001",
+                sellerId,
                 productImage,
                 productName,
                 productDescription,

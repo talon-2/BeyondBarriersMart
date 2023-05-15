@@ -37,6 +37,16 @@ class SellerBottomNavFragment : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.sellerProfileIcon -> {
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+
+                    val newFragment = LoginFragment()
+                    val transaction = fragmentManager?.beginTransaction()
+                    transaction?.add(R.id.fragment_container, newFragment)
+                    transaction?.addToBackStack(null)
+                    transaction?.commit()
+
                     true
                 }
 

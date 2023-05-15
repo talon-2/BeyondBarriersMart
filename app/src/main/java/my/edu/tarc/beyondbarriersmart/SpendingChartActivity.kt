@@ -2,6 +2,7 @@ package my.edu.tarc.beyondbarriersmart
 
 import android.content.ContentValues
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.graphics.Color
 import android.icu.util.Calendar
 import android.os.Bundle
@@ -127,7 +128,8 @@ class SpendingChartActivity : AppCompatActivity() {
         var amtSpentInDay = 0f
 
         //who is the CustomerId using this app? (TO BE CHANGED)
-        val custId = "C0001"
+        val sharedPref = getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
+        val custId = sharedPref.getString(LoginFragment.sellerId, "").toString()
 
         //variable for saving a purchase record.
         var productCost = 0f
