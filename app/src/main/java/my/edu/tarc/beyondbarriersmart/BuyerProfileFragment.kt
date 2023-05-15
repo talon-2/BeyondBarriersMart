@@ -2,6 +2,7 @@ package my.edu.tarc.beyondbarriersmart
 
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ class BuyerProfileFragment : Fragment(), DialogInterface.OnDismissListener {
     private lateinit var editProfileButton: Button
     private lateinit var editPaymentMethodClickableText: TextView
     private lateinit var editAddressClickableText: TextView
+    private lateinit var spendingChartButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +39,11 @@ class BuyerProfileFragment : Fragment(), DialogInterface.OnDismissListener {
         bankNameText = view.findViewById(R.id.buyer_profile_bank_name_text)
         cardNumberText = view.findViewById(R.id.buyer_profile_card_number)
         addressText = view.findViewById(R.id.buyer_profile_address)
+
         editProfileButton = view.findViewById(R.id.edit_profile_button)
         editPaymentMethodClickableText = view.findViewById(R.id.edit_payment_method_clickable_text)
         editAddressClickableText = view.findViewById(R.id.edit_address_clickable_text)
+        spendingChartButton = view.findViewById(R.id.view_spending_chart_button)
 
         editProfileButton.setOnClickListener {
             val fragmentManager = requireFragmentManager()
@@ -71,7 +75,17 @@ class BuyerProfileFragment : Fragment(), DialogInterface.OnDismissListener {
             }
         }
 
+        spendingChartButton.setOnClickListener {
+            startActivity(Intent(this.requireActivity(), SpendingChartActivity::class.java))
+        }
+
         update()
+
+        val newFragment = BottomNavFragment()
+        val transaction = fragmentManager?.beginTransaction()
+        transaction?.add(R.id.fragment_container, newFragment)
+        transaction?.addToBackStack(null)
+        transaction?.commit()
 
         return view
     }

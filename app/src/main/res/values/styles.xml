@@ -18,8 +18,8 @@
 
     <style name="black_outline_text">
         <item name="android:shadowColor">#000000</item>
-        <item name="android:shadowDx">1.7</item>
-        <item name="android:shadowDy">1.5</item>
+        <item name="android:shadowDx">3</item>
+        <item name="android:shadowDy">1.8</item>
         <item name="android:shadowRadius">1.5</item>
     </style>
 </resources>
