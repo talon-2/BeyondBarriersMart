@@ -26,12 +26,12 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, testFragment)
-//            .add(R.id.fragment_container, bottomNavigationFragment)
             .commit()
+//            .add(R.id.fragment_container, bottomNavigationFragment)
 
         //starting a activity (to be placed in an if else statement.)
         //some Activities can only be seen if you run it instead of looking it from the Design preview.
-//        startActivity(Intent(this,RegisterActivity::class.java))
+        startActivity(Intent(this,CategoryActivity::class.java))
 //        finish()
     }
 }

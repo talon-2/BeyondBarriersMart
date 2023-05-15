@@ -33,6 +33,11 @@
             android:label="CategoryActivity"
             android:theme="@style/Theme.BeyondBarriersMart.NoActionBar" />
         <activity
+            android:name=".ProductActivity"
+            android:exported="false"
+            android:label="ProductActivity"
+            android:theme="@style/Theme.BeyondBarriersMart.NoActionBar" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
