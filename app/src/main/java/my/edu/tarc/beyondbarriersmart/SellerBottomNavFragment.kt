@@ -37,7 +37,7 @@ class SellerBottomNavFragment : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.sellerProfileIcon -> {
-                    val intent = Intent(activity, MyProductsActivity::class.java)
+                    val intent = Intent(activity, SellerProfileActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
                     true
