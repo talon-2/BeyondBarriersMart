@@ -218,9 +218,9 @@
     <string name="view_my_products">View My Products</string>
     <string name="add_product">Add Product</string>
     <string name="orders_received">Orders Received</string>
-    <string name="name_date">Name/Date</string>
+    <string name="product_info">Product Info</string>
     <string name="amount">Amount</string>
-    <string name="status">Status</string>
+    <string name="order_date">Order Date</string>
     <string name="seller_name_sample">Joe Mahma</string>
     <string name="seller_order_item_name_sample">Beanie Dark Grey</string>
     <string name="seller_order_item_date_sample">20/1/2023</string>

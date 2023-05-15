@@ -15,5 +15,17 @@ class SellerProductItem (
     var cost: Float,
     var shipNeed: Boolean
 ){
+    private var isEmpty = false
 
+    constructor() : this("", "", "", "", "", "", 0, 0, 0f, 0f, false) {
+        isEmpty = true
+    }
+
+    public fun isEmptyProduct(): Boolean {
+        return isEmpty
+    }
+
+    public fun setEmpty(empty: Boolean) {
+        isEmpty = empty
+    }
 }

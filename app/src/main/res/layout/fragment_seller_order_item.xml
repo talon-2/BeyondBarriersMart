@@ -30,44 +30,15 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/order_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="@string/seller_order_item_date_sample"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/product_image"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/order_item_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="@string/seller_order_item_name_sample"
         android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/product_image"
         app:layout_constraintStart_toEndOf="@+id/product_image"
-        app:layout_constraintTop_toBottomOf="@+id/order_date" />
-
-    <TextView
-        android:id="@+id/address_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/address"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_image" />
-
-    <TextView
-        android:id="@+id/order_address"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/seller_order_item_address_sample"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_text" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/order_amount"
@@ -80,10 +51,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/order_status"
+        android:id="@+id/seller_order_item_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/seller_order_item_status_sample"
+        android:text="@string/seller_order_item_date_sample"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline5"
@@ -93,10 +64,11 @@
         android:id="@+id/mark_as_done_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="@string/mark_as_done"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_address"
+        app:layout_constraintTop_toBottomOf="@+id/product_image"
         app:layout_constraintWidth_percent="0.4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
