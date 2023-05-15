@@ -1,5 +1,7 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -27,9 +29,12 @@ class CartFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
+        val sharedPref = requireContext().getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
+        val currentCustomer = sharedPref.getString(LoginFragment.custId, "").toString()
+
         var cartList = mutableListOf<Cart>()
         FirebaseFirestore.getInstance().collection("Cart").
-        whereEqualTo("customerId", "C0001").get().addOnSuccessListener {carts->
+        whereEqualTo("customerId", currentCustomer).get().addOnSuccessListener {carts->
 
             carts.forEach{
                 val cart = Cart(it.data.get("customerId").toString(), it.data.get("itemAmt").toString().toInt(), it.data.get("productId").toString())
@@ -53,7 +58,7 @@ class CartFragment : Fragment() {
 
         binding.clearCartButton.setOnClickListener(){
             FirebaseFirestore.getInstance().collection("Cart").
-            whereEqualTo("customerId", "C0001").get().addOnSuccessListener {
+            whereEqualTo("customerId", currentCustomer).get().addOnSuccessListener {
                 cartList.clear()
                 for (cart in it){
                     adapter.initialiseAdapter(cartList)
@@ -62,6 +67,13 @@ class CartFragment : Fragment() {
                     document(cart.id).delete()
                 }
             }
+        }
+
+        binding.cartCheckoutButton.setOnClickListener(){
+            //head to checkout.
+            val intent = Intent(activity, CheckoutActivity::class.java)
+            startActivity(intent)
+            activity?.finish()
         }
 
         binding.cartItemNumber.text = String.format("Items in Cart: ") + adapter.itemCount.toString()

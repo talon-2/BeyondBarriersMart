@@ -2,6 +2,7 @@ package my.edu.tarc.beyondbarriersmart
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.media.Image
@@ -11,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -51,7 +53,8 @@ class ProductActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //current customer data (TO BE UPDATED)
-        currentCustomerId = "C0001"
+        val sharedPref = getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
+        currentCustomerId = sharedPref.getString(LoginFragment.custId, "").toString()
 
         gridView = findViewById(R.id.dynamicRelatedProductGridView)
         cards = mutableListOf()

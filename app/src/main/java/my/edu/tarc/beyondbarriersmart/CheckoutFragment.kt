@@ -1,6 +1,7 @@
 package my.edu.tarc.beyondbarriersmart
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.provider.SyncStateContract.Helpers.update
 import android.util.Log
@@ -23,16 +24,16 @@ import java.util.UUID.randomUUID
 class CheckoutFragment : Fragment() {
     private lateinit var binding : FragmentCheckoutBinding
     val adapter = CheckoutAdapter()
-    //val sharedPref = requireContext().getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
 
-    val currentCustomer = "C0001"
+
+
     val db = Firebase.firestore
     val cartRef = db.collection("Cart")
     val purchaseRef = db.collection("Purchase")
     val productRef = db.collection("SellerProductItem")
     //get current date
     val currentDate = Calendar.getInstance().time
-    val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+    val dateFormat = SimpleDateFormat("d-M-yyyy", Locale.getDefault())
     val dateToBeSaved = dateFormat.format(currentDate).toString()
 
 
@@ -43,9 +44,12 @@ class CheckoutFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentCheckoutBinding.inflate(inflater, container, false)
 
+        val sharedPref = requireContext().getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
+        val currentCustomer = sharedPref.getString(LoginFragment.custId, "").toString()
+
         var orderList = mutableListOf<Cart>()
         FirebaseFirestore.getInstance().collection("Cart").
-        whereEqualTo("customerId", "C0001").get().addOnSuccessListener {carts->
+        whereEqualTo("customerId", currentCustomer).get().addOnSuccessListener {carts->
 
             carts.forEach{
                 val cart = Cart(it.data.get("customerId").toString(), it.data.get("itemAmt").toString().toInt(), it.data.get("productId").toString())
@@ -110,17 +114,24 @@ class CheckoutFragment : Fragment() {
                                     .set(cartRecord)
 
                                 //change the stock number from the productSellerItem according to the productId
-                                /*val productQuery = productRef.whereEqualTo("productId", prodId)
-                                productQuery.get().addOnSuccessListener{ documents ->
-                                    for (document in documents){
-                                        val product = document.data
-                                        val getProductStock = "${product?.get("stock")}"
-                                        val getSoldStock = "${product?.get("sold")}"
-                                        document.update("stock", (getProductStock.toString().toInt() - itemAmt))
-                                        document.update("sold", (getSoldStock.toString().toInt() + 1))
-                                    }
+                                val product = productRef.document(prodId)
 
-                                }*/
+                                //read what stock and sold value is
+                                product.get().addOnSuccessListener { document ->
+                                    if (document != null){
+                                        val data = document.data
+                                        val getProductStock = "${data?.get("stock")}"
+                                        val getSoldStock = "${data?.get("sold")}"
+
+                                        //then update it.
+                                        val updateStock = hashMapOf<String, Any>(
+                                            "stock" to (getProductStock.toString().toInt() - itemAmt),
+                                            "sold" to (getSoldStock.toString().toInt() + 1)
+                                        )
+
+                                        product.update(updateStock)
+                                    }
+                                }
                             }
                         }
 
@@ -136,6 +147,10 @@ class CheckoutFragment : Fragment() {
                             }
                     }
                 }
+                //head back to cart
+                val intent = Intent(activity, CategoryActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
             }
         }
         return binding.root

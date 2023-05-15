@@ -51,9 +51,9 @@ class BottomNavFragment : Fragment() {
                 }
 
                 R.id.cartIcon -> {
-                    val cartFragment = CartFragment()
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, cartFragment)
+                    val intent = Intent(activity, CartActivity::class.java)
+                    startActivity(intent)
+                    activity?.finish()
                     true
                 }
 
