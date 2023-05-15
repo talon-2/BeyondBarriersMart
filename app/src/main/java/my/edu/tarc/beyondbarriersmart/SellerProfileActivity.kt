@@ -8,6 +8,10 @@ import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.transaction
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SellerProfileActivity : AppCompatActivity() {
@@ -15,8 +19,8 @@ class SellerProfileActivity : AppCompatActivity() {
     private lateinit var emailText: TextView
     private lateinit var viewProductsButton: Button
     private lateinit var editProfileButton: Button
-    private lateinit var ordersReceivedList: LinearLayout
-    private val ordersList = MutableList(50) { OrderReceive() }
+
+    private val fragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +30,6 @@ class SellerProfileActivity : AppCompatActivity() {
         emailText = findViewById(R.id.seller_profile_email)
         viewProductsButton = findViewById(R.id.view_my_products_button)
         editProfileButton = findViewById(R.id.seller_edit_profile_button)
-        ordersReceivedList = findViewById(R.id.orders_received_list)
 
         viewProductsButton.setOnClickListener {
             startActivity(Intent(this@SellerProfileActivity, MyProductsActivity::class.java))
@@ -45,7 +48,7 @@ class SellerProfileActivity : AppCompatActivity() {
         update()
         readOrders()
 
-        supportFragmentManager.beginTransaction().apply {
+        fragmentManager.beginTransaction().apply {
             add(R.id.seller_profile_fragment_container, SellerProfileFragment())
             add(R.id.seller_profile_fragment_container, SellerBottomNavFragment())
             commit()
@@ -65,9 +68,12 @@ class SellerProfileActivity : AppCompatActivity() {
 
         val productQuery = FirebaseFirestore.getInstance()
             .collection("SellerProductItem")
-            .whereEqualTo(LoginFragment.sellerId, sellerId)
+            .whereEqualTo(LoginFragment.sellerId, sellerId).get()
 
-        productQuery.get().addOnSuccessListener { prodSnapshot ->
+        clearFragments()
+
+        var index = 0
+        productQuery.addOnSuccessListener { prodSnapshot ->
             if (!prodSnapshot.isEmpty) {
                 prodSnapshot.documents.forEachIndexed { _, productDocument ->
                     val purchaseQuery = FirebaseFirestore.getInstance()
@@ -76,7 +82,7 @@ class SellerProfileActivity : AppCompatActivity() {
 
                     purchaseQuery.get().addOnSuccessListener { purchaseSnapshot ->
                         if (!purchaseSnapshot.isEmpty) {
-                            purchaseSnapshot.documents.forEachIndexed { index, purchaseDocument ->
+                            purchaseSnapshot.documents.forEachIndexed { _, purchaseDocument ->
                                 val purchaseId = purchaseDocument.get("purchaseId").toString()
                                 val image = productDocument.get("image").toString()
                                 val itemName = productDocument.get("name").toString()
@@ -91,12 +97,10 @@ class SellerProfileActivity : AppCompatActivity() {
                                 customerQuery.get().addOnSuccessListener { customerSnapshot ->
                                     if (!customerSnapshot.isEmpty) {
                                         val address = customerSnapshot.documents[0].get("address").toString()
-                                        ordersList[index] = OrderReceive(purchaseId, image, itemName, address, amount, dateOrdered, isDone)
+                                        displayItem(OrderReceive(purchaseId, image, itemName, address, amount, dateOrdered, isDone))
                                     }
-//                                    displayOrders()
                                 }
                             }
-                            displayOrders()
                         }
                     }
                 }
@@ -104,7 +108,7 @@ class SellerProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun displayOrders() {
+    private fun clearFragments() {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
 
@@ -112,22 +116,25 @@ class SellerProfileActivity : AppCompatActivity() {
             transaction.remove(fragment)
         }
 
-        ordersList.filter({ item -> !item.isDone}).forEachIndexed { index, order ->
-            val bundle = Bundle()
+        transaction.commit()
+    }
 
-            bundle.putString("purchaseId", order.purchaseId)
-            bundle.putString("image", order.image)
-            bundle.putString("name", order.itemName)
-            bundle.putString("address", order.address)
-            bundle.putString("purchaseAmt", order.purchaseAmt.toString())
-            bundle.putString("date", order.date.toString())
-            bundle.putBoolean("isDone", order.isDone)
+    private fun displayItem(order: OrderReceive) {
+        val bundle = Bundle()
 
-            val orderItem = SellerOrderItem()
-            orderItem.arguments = bundle
-            transaction.add(R.id.orders_received_list, orderItem)
-        }
-        transaction.add(R.id.seller_profile_fragment_container, SellerBottomNavFragment())
+        bundle.putString("purchaseId", order.purchaseId)
+        bundle.putString("image", order.image)
+        bundle.putString("name", order.itemName)
+        bundle.putString("address", order.address)
+        bundle.putString("purchaseAmt", order.purchaseAmt.toString())
+        bundle.putString("date", order.date.toString())
+        bundle.putBoolean("isDone", order.isDone)
+
+        val orderItem = SellerOrderItem()
+        orderItem.arguments = bundle
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.orders_received_list, orderItem)
         transaction.commit()
     }
 }
