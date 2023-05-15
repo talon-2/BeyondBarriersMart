@@ -168,16 +168,21 @@ class CategoryActivity : AppCompatActivity(){
 
                 for (document in sortedDocuments){
                     val data = document.data
+                    var stockToCheck = "${data?.get("stock")}".toString().toInt()
+                    var deListToCheck = "${data?.get("isDelisted")}".toBoolean()
 
-                    var currentImage = "${data?.get("image")}"
-                    var currentName =  "${data?.get("name")}"
-                    val tempPrice = data?.get("cost") as Double
-                    val currentPrice = String.format("RM%,.2f", tempPrice)
-                    val currentId = "${data?.get("productId")}"
+                    if(stockToCheck > 0 && !deListToCheck){
 
-                    var card = Card(currentImage, currentName, currentPrice, currentCate, currentId)
+                        var currentImage = "${data?.get("image")}"
+                        var currentName =  "${data?.get("name")}"
+                        val tempPrice = data?.get("cost") as Double
+                        val currentPrice = String.format("RM%,.2f", tempPrice)
+                        val currentId = "${data?.get("productId")}"
 
-                    cards.add(card)
+                        var card = Card(currentImage, currentName, currentPrice, currentCate, currentId)
+
+                        cards.add(card)
+                    }
                 }
 
                 val cardAdapter = CardAdapter(this@CategoryActivity, cards)

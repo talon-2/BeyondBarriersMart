@@ -119,35 +119,42 @@ class ProductActivity : AppCompatActivity() {
             for (document in documents){
                 val data = document.data
 
-                var currentImage = "${data?.get("image")}"
-                val currentName =  "${data?.get("name")}"
-                val tempPrice = data?.get("cost") as Double
-                val currentPrice = String.format("RM%,.2f", tempPrice)
-                val currentRating = "${data?.get("rating")}"
-                val currentDesc = "${data?.get("description")}"
-                val currentSellerId = "${data?.get("sellerId")}"
+                var stockToCheck = "${data?.get("stock")}".toString().toInt()
+                var deListToCheck = "${data?.get("isDelisted")}".toBoolean()
 
-                val imageRef = storageRef.child(currentImage)
-                val ONE_MEGABYTE = 1024 * 1024.toLong()
+                if(stockToCheck > 0 && !deListToCheck) {
 
-                imageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener { bytes ->
-                    val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-                    productImage.findViewById<ImageView>(R.id.itemImageView).setImageBitmap(bitmap)
-                }.addOnFailureListener {
-                    //do nothing
-                }
-                productName.text = currentName
-                productPrice.text = currentPrice
-                productDesc.text = currentDesc
-                productRating.rating = currentRating.toFloat()
+                    var currentImage = "${data?.get("image")}"
+                    val currentName = "${data?.get("name")}"
+                    val tempPrice = data?.get("cost") as Double
+                    val currentPrice = String.format("RM%,.2f", tempPrice)
+                    val currentRating = "${data?.get("rating")}"
+                    val currentDesc = "${data?.get("description")}"
+                    val currentSellerId = "${data?.get("sellerId")}"
 
-                val sellerQuery = FirebaseFirestore.getInstance().collection("Seller").whereEqualTo("sellerId", currentSellerId)
-                sellerQuery.get().addOnSuccessListener { sellerDocuments ->
-                    for(sellerDocument in sellerDocuments){
-                        val data = sellerDocument.data
+                    val imageRef = storageRef.child(currentImage)
+                    val ONE_MEGABYTE = 1024 * 1024.toLong()
 
-                        val currentSellerName = "${data?.get("username")}"
-                        /*
+                    imageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener { bytes ->
+                        val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                        productImage.findViewById<ImageView>(R.id.itemImageView)
+                            .setImageBitmap(bitmap)
+                    }.addOnFailureListener {
+                        //do nothing
+                    }
+                    productName.text = currentName
+                    productPrice.text = currentPrice
+                    productDesc.text = currentDesc
+                    productRating.rating = currentRating.toFloat()
+
+                    val sellerQuery = FirebaseFirestore.getInstance().collection("Seller")
+                        .whereEqualTo("sellerId", currentSellerId)
+                    sellerQuery.get().addOnSuccessListener { sellerDocuments ->
+                        for (sellerDocument in sellerDocuments) {
+                            val data = sellerDocument.data
+
+                            val currentSellerName = "${data?.get("username")}"
+                            /*
                         val currentSellerImage = "${data?.get("image")}"
 
                         imageRef.getBytes(ONE_MEGABYTE).addOnSuccessListener { bytes ->
@@ -157,7 +164,8 @@ class ProductActivity : AppCompatActivity() {
                             //do nothing
                         }
                         */
-                        sellerName.text = currentSellerName
+                            sellerName.text = currentSellerName
+                        }
                     }
                 }
             }
