@@ -71,6 +71,11 @@ class ProductActivity : AppCompatActivity() {
         currentProduct = intent.getStringExtra("id_key").toString()
         currentCate = intent.getStringExtra("cate_key").toString()
 
+        val bottomNavigationFragment = BottomNavFragment()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.product_fragment_container, bottomNavigationFragment)
+            .commit()
+
         plusBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 val currentQuantity = quantityNumber.text.toString().toInt()

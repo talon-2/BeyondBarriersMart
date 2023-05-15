@@ -35,18 +35,18 @@ class BottomNavFragment : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.homeIcon -> {
-                    //if you need to display a fragment
-                    val homeFragment = CartFragment()
-                    parentFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, homeFragment)
+                    val intent = Intent(activity, CategoryActivity::class.java)
+                    startActivity(intent)
+                    activity?.finish()
                     true
                 }
 
                 R.id.profileIcon -> {
                     //if you want to display an activity
                     //note that you have to recopy this entire function in your .kt, since it is a seperate activity.
-                    val intent = Intent(activity, SpendingChartActivity::class.java)
+                    val intent = Intent(activity, BuyerProfileActivity::class.java)
                     startActivity(intent)
+                    activity?.finish()
                     true
                 }
 

@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val testFragment = BuyerProfileFragment()
+        val testFragment = LoginFragment()
 //        val bottomNavigationFragment = BottomNavFragment()
 
         supportFragmentManager.beginTransaction()

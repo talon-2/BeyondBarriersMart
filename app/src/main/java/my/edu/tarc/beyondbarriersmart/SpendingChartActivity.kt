@@ -129,7 +129,7 @@ class SpendingChartActivity : AppCompatActivity() {
 
         //who is the CustomerId using this app? (TO BE CHANGED)
         val sharedPref = getSharedPreferences("LOGIN_INFO", Context.MODE_PRIVATE)
-        val custId = sharedPref.getString(LoginFragment.sellerId, "").toString()
+        val custId = sharedPref.getString(LoginFragment.custId, "").toString()
 
         //variable for saving a purchase record.
         var productCost = 0f
@@ -181,7 +181,7 @@ class SpendingChartActivity : AppCompatActivity() {
                     }
 
                     //add up to total
-                    totalSpentInMonth += totalSpentInDay
+                    //totalSpentInMonth += totalSpentInDay
 
                     //set the textviews
                     highSpent.text =
@@ -244,8 +244,11 @@ class SpendingChartActivity : AppCompatActivity() {
                         }
 
                         //add up to total
-                        totalSpentInMonth += totalSpentInDay
+                        Log.d(TAG, "THIS MONTH:" + totalSpentInMonth)
+                        Log.d(TAG, "ADD TO THIS MONTH:" + totalSpentInDay)
+                        totalSpentInMonth += totalSpentInRecord
 
+                        Log.d(TAG, "THIS MONTH:" + totalSpentInMonth)
                         //set the textviews
                         highSpent.text =
                             "RM " + highestSpentInDay + " (Day " + highestSpentDay + " " +selectedMonth.selectedItem.toString()+ " "+ selectedYear.selectedItem.toString()+")"

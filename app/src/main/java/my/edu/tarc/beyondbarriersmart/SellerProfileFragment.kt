@@ -56,11 +56,11 @@ class SellerProfileFragment : Fragment(), DialogInterface.OnDismissListener {
         update()
         readOrders()
 
-        val newFragment = SellerBottomNavFragment()
-        val transaction = fragmentManager?.beginTransaction()
-        transaction?.add(R.id.fragment_container, newFragment)
-        transaction?.addToBackStack(null)
-        transaction?.commit()
+//        val newFragment = SellerBottomNavFragment()
+//        val transaction = fragmentManager?.beginTransaction()
+//        transaction?.add(R.id.fragment_container, newFragment)
+//        transaction?.addToBackStack(null)
+//        transaction?.commit()
 
         return view
     }

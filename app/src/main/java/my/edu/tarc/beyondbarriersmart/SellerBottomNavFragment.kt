@@ -11,9 +11,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class SellerBottomNavFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,16 +37,9 @@ class SellerBottomNavFragment : Fragment() {
         bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.sellerProfileIcon -> {
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    val intent = Intent(activity, MyProductsActivity::class.java)
                     startActivity(intent)
-
-                    val newFragment = LoginFragment()
-                    val transaction = fragmentManager?.beginTransaction()
-                    transaction?.add(R.id.fragment_container, newFragment)
-                    transaction?.addToBackStack(null)
-                    transaction?.commit()
-
+                    activity?.finish()
                     true
                 }
 
@@ -55,6 +48,7 @@ class SellerBottomNavFragment : Fragment() {
                     //note that you have to recopy this entire function in your .kt, since it is a seperate activity.
                     val intent = Intent(activity, MyProductsActivity::class.java)
                     startActivity(intent)
+                    activity?.finish()
                     true
                 }
 

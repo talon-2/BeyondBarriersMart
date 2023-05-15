@@ -56,6 +56,13 @@ class CategoryActivity : AppCompatActivity(){
         decorationBtn = findViewById(R.id.decorativeBtn)
         filterSelection = findViewById(R.id.cateFilterSpinner)
 
+        val bottomNavigationFragment = BottomNavFragment()
+        supportFragmentManager.beginTransaction()
+            .add(R.id.category_fragment_container, bottomNavigationFragment)
+            .commit()
+
+
+
         filterSelection.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?, view: View?, position: Int, id: Long

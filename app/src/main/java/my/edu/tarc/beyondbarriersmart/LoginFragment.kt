@@ -157,10 +157,13 @@ class LoginFragment : Fragment() {
 
                         editor?.apply()
 
-                        requireActivity().supportFragmentManager.beginTransaction()
-                            .replace(R.id.fragment_container, SellerProfileFragment())
-                            .commit()
+//                        requireActivity().supportFragmentManager.beginTransaction()
+//                            .replace(R.id.fragment_container, SellerProfileFragment())
+//                            .commit()
 
+                        val intent = Intent(activity, SellerProfileActivity::class.java)
+                        startActivity(intent)
+                        activity?.finish()
                         //navigate where the seller should go
                     }
                 }
@@ -188,9 +191,12 @@ class LoginFragment : Fragment() {
 
                 editor?.apply()
 
-                requireActivity().supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, BuyerProfileFragment())
-                    .commit()
+                val intent = Intent(activity, CategoryActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+//                requireActivity().supportFragmentManager.beginTransaction()
+//                    .replace(R.id.fragment_container, BuyerProfileFragment())
+//                    .commit()
 
                 //navigate where the customer should go
             }
