@@ -125,14 +125,15 @@ class CheckoutFragment : Fragment() {
 
                                 //read what stock and sold value is
                                 product.get().addOnSuccessListener { document ->
-                                    if (document != null){
+                                    if (document != null) {
                                         val data = document.data
                                         val getProductStock = "${data?.get("stock")}"
                                         val getSoldStock = "${data?.get("sold")}"
 
                                         //then update it.
                                         val updateStock = hashMapOf<String, Any>(
-                                            "stock" to (getProductStock.toString().toInt() - itemAmt),
+                                            "stock" to (getProductStock.toString()
+                                                .toInt() - itemAmt),
                                             "sold" to (getSoldStock.toString().toInt() + 1)
                                         )
 
@@ -140,18 +141,26 @@ class CheckoutFragment : Fragment() {
                                     }
                                 }
                             }
-                        }
 
-                        //once that record is added, delete the record from your cart
-                        document.reference.delete()
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    val checkoutText = "Checkout has been completed!"
-                                    Toast.makeText(context, checkoutText, Toast.LENGTH_SHORT).show()
-                                } else {
 
-                                }
+                            //once that record is added, delete the record from your cart
+                            if ("${document?.get("customerId")}" == currentCustomer) {
+                                document.reference.delete()
+                                    .addOnCompleteListener { task ->
+                                        if (task.isSuccessful) {
+                                            val checkoutText = "Checkout has been completed!"
+                                            Toast.makeText(
+                                                context,
+                                                checkoutText,
+                                                Toast.LENGTH_SHORT
+                                            )
+                                                .show()
+                                        } else {
+
+                                        }
+                                    }
                             }
+                        }
                     }
                 }
                 //head back to category
