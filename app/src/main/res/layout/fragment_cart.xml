@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="64dp"
         android:text="@string/cartCheckoutButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
