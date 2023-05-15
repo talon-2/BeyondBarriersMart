@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val testFragment = CartFragment()
+        val testFragment = LoginFragment()
 
         supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, testFragment)
