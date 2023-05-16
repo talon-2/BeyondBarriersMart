@@ -4,14 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.fragment.app.transaction
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.FirebaseFirestore
 
 class SellerProfileActivity : AppCompatActivity() {
@@ -70,7 +64,7 @@ class SellerProfileActivity : AppCompatActivity() {
             .collection("SellerProductItem")
             .whereEqualTo(LoginFragment.sellerId, sellerId).get()
 
-        clearFragments()
+        clearOrders()
 
         var index = 0
         productQuery.addOnSuccessListener { prodSnapshot ->
@@ -97,7 +91,9 @@ class SellerProfileActivity : AppCompatActivity() {
                                 customerQuery.get().addOnSuccessListener { customerSnapshot ->
                                     if (!customerSnapshot.isEmpty) {
                                         val address = customerSnapshot.documents[0].get("address").toString()
-                                        displayItem(OrderReceive(purchaseId, image, itemName, address, amount, dateOrdered, isDone))
+                                        if (!isDone) {
+                                            displayItem(OrderReceive(purchaseId, image, itemName, address, amount, dateOrdered, isDone))
+                                        }
                                     }
                                 }
                             }
@@ -108,14 +104,12 @@ class SellerProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun clearFragments() {
+    private fun clearOrders() {
         val fragmentManager = supportFragmentManager
         val transaction = fragmentManager.beginTransaction()
-
         for (fragment in fragmentManager.fragments) {
-            transaction.remove(fragment)
+            transaction.remove(fragmentManager.findFragmentByTag("ORDER_ITEM")!!)
         }
-
         transaction.commit()
     }
 
@@ -134,7 +128,7 @@ class SellerProfileActivity : AppCompatActivity() {
         orderItem.arguments = bundle
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.orders_received_list, orderItem)
+        transaction.add(R.id.orders_received_list, orderItem, "ORDER_ITEM")
         transaction.commit()
     }
 }
