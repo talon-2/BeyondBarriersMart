@@ -15,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 
 class EditCustomerInfoFragment : DialogFragment() {
-    private lateinit var profileImageButton: ImageButton
     private lateinit var usernameInput: EditText
     private lateinit var emailInput: EditText
     private lateinit var phoneNumberInput: EditText
@@ -25,7 +24,6 @@ class EditCustomerInfoFragment : DialogFragment() {
         val inflater = requireActivity().layoutInflater
         val view = inflater.inflate(R.layout.fragment_edit_customer_info, null)
 
-        profileImageButton = view.findViewById(R.id.buyer_profile_edit_pic)
         usernameInput = view.findViewById(R.id.buyer_profile_username_edit)
         emailInput = view.findViewById(R.id.buyer_profile_email_edit)
         phoneNumberInput = view.findViewById(R.id.buyer_profile_phone_number_edit)

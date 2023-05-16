@@ -64,12 +64,6 @@ class BuyerRegistrationFragment : Fragment() {
         addressInput = view.findViewById(R.id.buyer_address_input)
         bankNameInput = view.findViewById(R.id.buyer_bank_name_input)
         cardNoInput = view.findViewById(R.id.buyer_card_no_input)
-        profileImageButton = view.findViewById(R.id.buyer_profile_pic_button)
-
-        profileImageButton.setOnClickListener{
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, SELECT_IMAGE_REQUEST_CODE)
-        }
 
         val bankNames = resources.getStringArray(R.array.bank_names)
         val adapter = ArrayAdapter(this.requireContext(), android.R.layout.simple_spinner_dropdown_item, bankNames)
@@ -179,7 +173,7 @@ class BuyerRegistrationFragment : Fragment() {
         val db = Firebase.firestore
         Log.d("Buyer Registration", "this is being run")
 
-        var custId = setupImg()
+        var custId = "C" + "${UUID.randomUUID().toString().substring(0, 4)}"
         var username = usernameInput!!.text.toString()
         var email = emailInput!!.text.toString()
         var password = passwordInput!!.text.toString()
@@ -208,7 +202,7 @@ class BuyerRegistrationFragment : Fragment() {
                 profileImage
             )
 
-            val collectionRef = db.collection("Customer").document("C" + "${UUID.randomUUID().toString().substring(0, 4)}")
+            val collectionRef = db.collection("Customer").document(custId)
             collectionRef.set(item)
             Toast.makeText(context, "Successfully registered!", Toast.LENGTH_SHORT).show()
         }
