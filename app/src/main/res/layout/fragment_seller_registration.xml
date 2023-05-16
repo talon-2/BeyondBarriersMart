@@ -32,20 +32,6 @@
                 app:layout_constraintBottom_toTopOf="@+id/seller_email_input"
                 app:layout_constraintStart_toStartOf="@+id/seller_email_input" />
 
-            <Button
-                android:id="@+id/seller_upload_cert_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/custom_input"
-                android:text="@string/upload_file"
-                android:textAlignment="textStart"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card_no_input"
-                app:layout_constraintWidth_percent="0.5" />
-
             <EditText
                 android:id="@+id/seller_password_input"
                 android:layout_width="wrap_content"
@@ -70,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/oku_cert"
                 app:layout_constraintBottom_toTopOf="@+id/seller_upload_cert_button"
+                app:layout_constraintEnd_toEndOf="@+id/seller_upload_cert_button"
                 app:layout_constraintStart_toStartOf="@+id/seller_upload_cert_button" />
 
             <TextView
@@ -198,6 +185,16 @@
                 android:text="@string/card_no"
                 app:layout_constraintBottom_toTopOf="@+id/card_no_input"
                 app:layout_constraintStart_toStartOf="@+id/card_no_input" />
+
+            <ImageButton
+                android:id="@+id/seller_upload_cert_button"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_no_input"
+                tools:src="@drawable/baseline_broken_image_24" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

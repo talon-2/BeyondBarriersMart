@@ -1,5 +1,6 @@
 package my.edu.tarc.beyondbarriersmart
 
+import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
 import android.content.Intent
@@ -14,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -29,7 +31,7 @@ class SellerRegistrationFragment : Fragment() {
     private lateinit var passwordRetype: EditText
     private lateinit var bankNameInput: Spinner
     private lateinit var cardNoInput: EditText
-    private lateinit var certButton: Button
+    private lateinit var certButton: ImageButton
     private var selectedFileUri: Uri? = null
 
     companion object {
@@ -53,11 +55,7 @@ class SellerRegistrationFragment : Fragment() {
         certButton = view.findViewById(R.id.seller_upload_cert_button)
 
         certButton.setOnClickListener{
-            val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-                type = "*/*.pdf"
-                addCategory(Intent.CATEGORY_OPENABLE)
-            }
-
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(intent, REQUEST_CODE_PICK_FILE)
         }
 
@@ -115,13 +113,13 @@ class SellerRegistrationFragment : Fragment() {
     public fun register() {
         val db = Firebase.firestore
 
-        var sellerId = String.format("S%04d", SellerRegistrationFragment.sellerID)
+        var sellerId = "S" + "${UUID.randomUUID().toString().substring(0, 4)}"
         var username = usernameInput!!.text.toString()
         var email = emailInput!!.text.toString()
         var password = passwordInput!!.text.toString()
         var bankName = bankNameInput!!.selectedItem.toString()
         var cardNo = cardNoInput!!.text.toString()
-        var certImg = selectedFileUri.toString()
+        var certImg = String.format("%s.image", sellerId)
 
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Confirmation")
@@ -138,7 +136,7 @@ class SellerRegistrationFragment : Fragment() {
                 certImg
             )
 
-            val collectionRef = db.collection("Seller").document("S" + "${UUID.randomUUID().toString().substring(0, 4)}")
+            val collectionRef = db.collection("Seller").document(sellerId)
             collectionRef.set(item)
             Toast.makeText(context, "Successfully registered!", Toast.LENGTH_SHORT).show()
         }
@@ -156,9 +154,11 @@ class SellerRegistrationFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        //to show the image on the screen
-        if (requestCode == REQUEST_CODE_PICK_FILE && resultCode == RESULT_OK && data != null) {
+        if (requestCode == REQUEST_CODE_PICK_FILE && resultCode == Activity.RESULT_OK && data != null) {
             selectedFileUri = data.data
+            if (selectedFileUri != null) {
+                val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, selectedFileUri)
+                certButton.setImageBitmap(bitmap)
+            }
         }
-    }
-}
+    }}
